@@ -1,0 +1,258 @@
+/* ##########################################################Overview section################################################################## */
+.client-gig-view {
+  width: 90%;
+  margin: 0 5%;
+}
+
+.client-gig-view {
+  display: flex;
+}
+
+.left-side {
+  flex: 2;
+  padding-right: 20px;
+}
+
+.right-side {
+  flex: 1;
+}
+
+.pkg-details {
+  padding: 10px;
+  margin-top: 25px;
+  border: 1px solid gray;
+}
+ul {
+  list-style: none;
+  padding: 0px;
+}
+li {
+  display: flex;
+  flex-direction: row;
+}
+.check-mark {
+  font-size: 20px;
+
+  font-weight: bold;
+  color: rgb(10, 237, 10);
+
+  align-items: center;
+}
+span {
+  display: flex;
+  padding-left: 10px;
+  color: #aeabab;
+}
+
+.continue-btn {
+  width: 200px;
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: red;
+  border: 1px solid red;
+  cursor: pointer;
+}
+.continue-btn:hover {
+  font-size: 16px;
+  font-weight: bold;
+  color: red;
+  background-color: #fff;
+  border: 1px solid red;
+
+  cursor: pointer;
+}
+
+.second-menu {
+  width: 90%;
+  margin: 0 5%;
+}
+.ant-menu-title-content {
+  padding: 0px;
+}
+
+:where(.css-dev-only-do-not-override-sk7ap8).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-item-selected::after {
+  border-bottom-width: 3;
+  padding-left: 0;
+  border-bottom-color: #fa5c18;
+}
+.rate-name-orders-div h3 {
+  margin-top: 0px;
+  color: #aeabab;
+}
+.gig-title {
+  text-align: left;
+  font-size: 30px;
+}
+.rate-name-orders-div h2 {
+  margin-bottom: 0px;
+  color: #aeabab;
+  display: flex;
+  flex-direction: row;
+}
+
+.gig-image {
+  width: 80%;
+  height: auto;
+  display: flex;
+  justify-content: start;
+}
+.gig-image img {
+  width: 100%;
+  height: auto;
+}
+
+.about-gig h2 {
+  color: black;
+}
+.description {
+  width: 80%;
+  text-align: justify;
+}
+
+.sellers-ideas-of-gig h2 {
+  color: black;
+}
+.sellers-reviews div {
+  width: 70%;
+}
+.review-section {
+  width: 600px;
+  height: 150px;
+  padding: 20px;
+  border: 1px solid gray;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
+}
+.review-tag {
+  width: 100%;
+  text-align: center;
+  font-style: italic;
+  color: rgb(56, 46, 46);
+}
+
+.client-name {
+  width: 100%;
+  text-align: center;
+  color: #aeabab;
+}
+.contact-me-btn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #720026;
+  background-color: #fff;
+  border: 1px solid #720026;
+  cursor: pointer;
+}
+.contact-me-btn:hover {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #720026;
+  border: 1px solid #720026;
+  cursor: pointer;
+}
+.slick-current {
+  width: 600px;
+}
+
+/*##################################################### About seller section################################################### */
+/* SELLER MAIN DETAILS STYLES */
+
+.seller-main-details {
+  width: 600px;
+  display: flex;
+  flex-direction: row;
+}
+.profile-picture {
+  width: 106px;
+  height: 106px;
+  border-radius: 50%;
+  border: 2px solid rgb(15, 234, 15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-picture img {
+  width: 100px;
+  height: 100px;
+}
+.details {
+  width: 400px;
+  margin-left: 30px;
+  padding-bottom: 20px;
+}
+.details .seller-name {
+  margin: 0px;
+  text-align: left;
+}
+.details span {
+  padding: 0px;
+}
+
+.contact-btn {
+  width: 250px;
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #720026;
+  background-color: #fff;
+  border: 1px solid #720026;
+  cursor: pointer;
+}
+.contact-btn:hover {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #720026;
+  border: 1px solid #720026;
+  cursor: pointer;
+}
+
+/* SELLER INFORMATION SECTION */
+.seller-information {
+  border: 1px solid gray;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+/* ################# review section  ############ */
+
+.review-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.review {
+  border: 2px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.review-rating {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.review-text {
+  margin-bottom: 10px;
+}
+
+.review-name {
+  font-style: italic;
+  text-align: right;
+}

@@ -1,0 +1,33 @@
+.salesContainer .card {
+  width: 25%;
+  background-color: rgba(182, 189, 182, 0.25);
+}
+
+.secondRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.table {
+  width: 50%;
+}
+
+/* Media quary */
+@media only screen and (max-width: 767px) {
+  .secondRow {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* hide  table on mobile*/
+  .table {
+    width: 100%;
+    display: none;
+  }
+  .salesContainer .card {
+    width: 100%;
+    background-color: rgba(182, 189, 182, 0.25);
+    border-bottom: 1px solid rgba(182, 189, 182, 0.5);
+    text-align: center;
+  }
+}

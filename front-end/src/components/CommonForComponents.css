@@ -1,0 +1,7 @@
+.coachName {
+  color: #1890ff;
+}
+
+.coachName:hover {
+  cursor: pointer;
+}

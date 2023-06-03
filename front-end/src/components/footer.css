@@ -1,0 +1,28 @@
+.footer {
+  background-color: black;
+  height: 70px;
+}
+
+.socialContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.social {
+  margin: 0px 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.socialIcon {
+  color: white;
+  font-size: 20px;
+}
