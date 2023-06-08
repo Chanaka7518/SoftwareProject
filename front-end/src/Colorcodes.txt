@@ -1,3 +1,4 @@
 NavBar,header,Slider => white
 Background(content) => #e9ecef
 profile menue =>   "rgba(0,255,0,0.25)",
+GREEEN => rgb(5, 218, 94)

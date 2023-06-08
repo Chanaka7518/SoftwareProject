@@ -114,27 +114,27 @@ const HeadCoachSignUp: React.FC = () => {
     let experiences = fifthModal.current;
     let accounts = socialAccouts.current;
 
-    await signup(
-      fName,
-      lastName,
-      password,
-      address,
-      nicNumber,
-      gender,
-      mobileNumber,
-      whatsapp,
-      landLine,
-      email,
-      website,
-      athleticArchievements,
-      experiences,
-      personalTraining,
-      onlineCoaching,
-      accounts,
-      isSubscribed,
-      thirdtModalDownloadUrls.current[0],
-      thirdtModalDetails.current[0]
-    );
+    // await signup(
+    //   fName,
+    //   lastName,
+    //   password,
+    //   address,
+    //   nicNumber,
+    //   gender,
+    //   mobileNumber,
+    //   whatsapp,
+    //   landLine,
+    //   email,
+    //   website,
+    //   athleticArchievements,
+    //   experiences,
+    //   personalTraining,
+    //   onlineCoaching,
+    //   accounts,
+    //   isSubscribed,
+    //   thirdtModalDownloadUrls.current[0],
+    //   thirdtModalDetails.current[0]
+    // );
 
     // setVisible8(false);
   };

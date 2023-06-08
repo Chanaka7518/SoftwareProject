@@ -12,30 +12,100 @@ import CoachHeader from "../components/HeadCoach/CoachHeader";
 import DashboardContent from "./HeadCoach/DashboardContent";
 import Package from "../components/HeadCoach/Package";
 import Workouts from "../components/HeadCoach/Workouts";
+import UnderReview from "../components/Results/UnderReview";
 
 const Dashboard = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState<string>("dashbord");
   const { logout } = useLogout();
   const { userData } = useAuthContext();
-  const userRole = userData?.userRole;
+  const userRole = userData?.role;
 
-  console.log(userRole);
   const routeTo = useNavigate();
   return (
     <div className="dashboards">
       <Row>
+        <Col style={{ width: "90%" }}>
+          <CoachHeader
+            drawerVisible={drawerVisible}
+            setDrawerVisible={setDrawerVisible}
+          />
+        </Col>
+      </Row>
+      <Row>
         {/* // HeadCoach menue */}
         <Col xs={0} sm={8} md={6} lg={4}>
           {/* #####################################---Desktop/Tab MENU---#################################### */}
-          {userRole === "HeadCoach" && (
+
+          {/* For accepted coaches */}
+          {userRole === "Coach" &&
+            userData.isAcceptedSeller &&
+            userData.isAppliedAsSeller && (
+              <Menu
+                style={{
+                  color: "black",
+                }}
+                theme="light"
+                mode="inline"
+                defaultSelectedKeys={["dashbord"]}
+                onClick={({ key }) => {
+                  if (key === "logout") {
+                    logout();
+                  }
+                  if (key === "profile") {
+                    routeTo("/headcoachprofile");
+                  }
+                  setSelectedMenu(key);
+                }}
+                items={[
+                  { label: "Dashboard", key: "dashbord" },
+                  { label: "Messages", key: "messages" },
+
+                  { label: "My Profile", key: "profile" },
+
+                  { label: "Log out", key: "logout", danger: true },
+                ]}
+              ></Menu>
+            )}
+
+          {/* for not accepted  and applied  coaches */}
+          {userRole === "Coach" &&
+            !userData.isAcceptedSeller &&
+            userData.isAppliedAsSeller && (
+              <Menu
+                style={{
+                  color: "black",
+                }}
+                theme="light"
+                mode="inline"
+                defaultSelectedKeys={["dashbord"]}
+                onClick={({ key }) => {
+                  if (key === "logout") {
+                    logout();
+                  }
+                  if (key === "profile") {
+                    routeTo("/headcoachprofile");
+                  }
+                  setSelectedMenu(key);
+                }}
+                items={[
+                  { label: "Dashboard", key: "dashbord" },
+
+                  { label: "My Profile", key: "profile" },
+
+                  { label: "Log out", key: "logout", danger: true },
+                ]}
+              ></Menu>
+            )}
+          {/* for not  applied  coaches */}
+          {userRole === "Coach" && !userData.isAppliedAsSeller && (
             <Menu
               style={{
                 color: "black",
               }}
               theme="light"
               mode="inline"
-              defaultSelectedKeys={["dashbord"]}
+              defaultSelectedKeys={["profile"]}
               onClick={({ key }) => {
                 if (key === "logout") {
                   logout();
@@ -46,9 +116,6 @@ const Dashboard = () => {
                 setSelectedMenu(key);
               }}
               items={[
-                { label: "Dashboard", key: "dashbord" },
-                { label: "Messages", key: "messages" },
-
                 { label: "My Profile", key: "profile" },
 
                 { label: "Log out", key: "logout", danger: true },
@@ -105,34 +172,54 @@ const Dashboard = () => {
               minHeight: "100vh",
             }}
           >
-            {/* for head coach */}
-            {selectedMenu === "clients" && userRole === "HeadCoach" && (
-              <MyClients />
-            )}
-            {selectedMenu === "sales" && userRole === "HeadCoach" && <Sales />}
-            {selectedMenu === "dashbord" && userRole === "HeadCoach" && (
-              <DashboardContent setSelectedMenu={setSelectedMenu} />
-            )}
-            {selectedMenu === "onlineCoaching" && userRole === "HeadCoach" && (
-              <Package
-                setSelectedMenu={setSelectedMenu}
-                packageName="onlineCoaching"
-              />
-            )}
+            {/* ###################### for head coach ########################## */}
+
+            {/* if not accepted seller */}
+
+            {selectedMenu === "dashbord" &&
+              userRole === "Coach" &&
+              !userData.isAcceptedSeller &&
+              userData.isAppliedAsSeller && <UnderReview />}
+
+            {/*  */}
+            {selectedMenu === "clients" &&
+              userRole === "Coach" &&
+              userData.isAcceptedSeller && <MyClients />}
+
+            {selectedMenu === "sales" &&
+              userRole === "Coach" &&
+              userData.isAcceptedSeller && <Sales />}
+
+            {selectedMenu === "dashbord" &&
+              userRole === "Coach" &&
+              userData.isAcceptedSeller && (
+                <DashboardContent setSelectedMenu={setSelectedMenu} />
+              )}
+
+            {selectedMenu === "onlineCoaching" &&
+              userRole === "Coach" &&
+              userData.isAcceptedSeller && (
+                <Package
+                  setSelectedMenu={setSelectedMenu}
+                  packageName="onlineCoaching"
+                />
+              )}
+
             {selectedMenu === "personalTraining" &&
-              userRole === "HeadCoach" && (
+              userRole === "Coach" &&
+              userData.isAcceptedSeller && (
                 <Package
                   setSelectedMenu={setSelectedMenu}
                   packageName="personalTraining"
                 />
               )}
 
-            {selectedMenu === "myteam" && userRole === "HeadCoach" && (
-              <div>Hi</div>
-            )}
-            {selectedMenu === "workouts" && userRole === "HeadCoach" && (
-              <Workouts />
-            )}
+            {selectedMenu === "myteam" &&
+              userRole === "Coach" &&
+              userData.isAcceptedSeller && <div>Hi</div>}
+            {selectedMenu === "workouts" &&
+              userRole === "Coach" &&
+              userData.isAcceptedSeller && <Workouts />}
 
             {/* for clients */}
 
@@ -168,6 +255,7 @@ const MobieMenu: React.FC<Props> = ({
     setDrawerVisible(!drawerVisible);
   };
 
+  const { userData } = useAuthContext();
   return (
     <div className="dashboards">
       {/* your code for the menu and content columns here */}
@@ -179,7 +267,8 @@ const MobieMenu: React.FC<Props> = ({
         open={drawerVisible}
         onClose={toggleDrawer}
       >
-        {userRole === "HeadCoach" && (
+        {/* for accepted coaches */}
+        {userRole === "Coach" && userData.isAcceptedSeller && (
           <Menu
             theme="light"
             mode="inline"
@@ -194,9 +283,33 @@ const MobieMenu: React.FC<Props> = ({
               setSelectedMenu(key);
             }}
             items={[
-              { label: "Dashboard", key: "dashboard" },
+              { label: "Dashboard", key: "dashbord" },
               { label: "Messages", key: "messages" },
 
+              { label: "My Profile", key: "profile" },
+
+              { label: "Log out", key: "logout", danger: true },
+            ]}
+          ></Menu>
+        )}
+
+        {/* For not accepted coaches */}
+        {userRole === "Coach" && !userData.isAcceptedSeller && (
+          <Menu
+            theme="light"
+            mode="inline"
+            defaultSelectedKeys={["clients"]}
+            onClick={({ key }) => {
+              if (key === "logout") {
+                logout();
+              }
+              if (key === "profile") {
+                routeTo("/headcoachprofile");
+              }
+              setSelectedMenu(key);
+            }}
+            items={[
+              { label: "Dashboard", key: "dashbord" },
               { label: "My Profile", key: "profile" },
 
               { label: "Log out", key: "logout", danger: true },

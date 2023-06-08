@@ -1,8 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import HeadCoachSignUp from "./components/signup/HeadCoachSignUp";
 import HomepageBody from "./Pages/HomePage/HomepageBody";
 import Login from "./components/login/Login";
-import LoginTest from "./components/Logins/Login";
 import ForgetPwd from "./components/login/ForgetPwd";
 import CreateNewPassword from "./components/login/CreateNewPassword";
 import Admin from "./Pages/Admin/Admin";
@@ -15,15 +13,16 @@ import { Coaching } from "./components/Coaching";
 import Color from "./Color";
 import ClientList from "./components/HeadCoach/ClientList";
 import MySales from "./components/HeadCoach/MySales";
-import Form1 from "./components/signup/HeadCoach/Form1";
+
 import SalesList from "./components/HeadCoach/SalesList";
 import MyTeam from "./components/HeadCoach/MyTeam";
 import ServicesPage from "./Pages/ServicesPage/ServicesPage";
 import ClientGigView from "./Pages/Client Views/ClientGigView";
-import Step1 from "./components/signup/HeadCoach/Step1";
-import Signup from "./components/signup/HeadCoach/Signup";
+
 // import Test from "./components/signup/HeadCoach/Test";
-import Test from "./Pages/Test";
+import Signup from "./components/signup/HeadCoach/SignUp";
+import UnderReview from "./components/Results/UnderReview";
+import SellerApplication from "./components/signup/HeadCoach/SellerApplication";
 
 const App: React.FC = () => {
   return (
@@ -32,7 +31,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomepageBody />} />
           <Route path="/generate" element={<UserDashboard />} />
-          <Route path="/signupHeadCoach/:token" element={<HeadCoachSignUp />} />
+          <Route path="/signupCoach/:token" element={<Signup />} />
           <Route path="/signup" element={<ClientSignup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgetpwd" element={<ForgetPwd />} />{" "}
@@ -62,7 +61,8 @@ const App: React.FC = () => {
           <Route path="/mysales/saleslist" element={<SalesList />} />
           <Route path="/myteam" element={<MyTeam />} />
           {/* test */}
-          <Route path="/test" element={<Test />} />
+          <Route path="/test" element={<UnderReview />} />
+          <Route path="/test1" element={<SellerApplication />} />
         </Routes>
       </div>
     </div>

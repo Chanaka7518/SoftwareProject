@@ -74,15 +74,16 @@ const NavBar = () => {
               <Popover
                 content={
                   <Space direction="vertical">
-                    {userRole === "HeadCoach" && (
+                    {userRole === "Coach" && (
                       <Link to="/headcoachProfile">Profile</Link>
                     )}
+
                     {userRole === "Admin" && <Unauthorized />}
                     {userRole === "Client" && (
                       <Link to="/clientProfile">Profile</Link>
                     )}
-
                     <Link to="/dashboard">Dashboard</Link>
+
                     <a onClick={handleClick} style={{ color: "red" }}>
                       Log out
                     </a>

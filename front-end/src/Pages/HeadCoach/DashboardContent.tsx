@@ -1,12 +1,11 @@
-import { Card, Col, Descriptions, message, Row, Space, Typography } from "antd";
+import { Card, Col, Row, Typography } from "antd";
 import React, { useState, useEffect } from "react";
 import { CaretUpFilled } from "@ant-design/icons";
 
 import { useAuthContext } from "../../Hooks/useAuthContext";
-import axios from "axios";
 import Meta from "antd/es/card/Meta";
-import Package from "../../components/HeadCoach/Package";
 import { useNavigate } from "react-router";
+import newRequest from "../../Utils/newRequest";
 
 const OCPhoto: string = new URL(`./online-coaching.jpg`, import.meta.url).href;
 const PTPhoto: string = new URL(`./personal-Training.jpg`, import.meta.url)
@@ -62,7 +61,8 @@ interface Props {
 const DashboardContent: React.FC<Props> = ({ setSelectedMenu }) => {
   const navigateTo = useNavigate();
   const { userData } = useAuthContext();
-  let userId = userData?.userId;
+  let userId = userData?._id;
+
   const [images, setImages] = useState<string[]>([OCPhoto, PTPhoto]);
 
   const [totalRevenue, setTotalRevenue] = useState<number>(156234);
@@ -73,23 +73,8 @@ const DashboardContent: React.FC<Props> = ({ setSelectedMenu }) => {
   const [ordersInProgress, setOrdersInProgress] = useState<number>(12);
   const [myTeam, setMyTeam] = useState<number>(12);
 
-  const [fName, setFName] = useState<string>("");
-  const [lName, setLName] = useState<string>("");
-
-  useEffect(() => {
-    if (userData?.userId) {
-      axios
-        .get(`http://localhost:5001/api/coach/${userId}`, {})
-        .then(function (response: any) {
-          setFName(response.data.firstName);
-          setLName(response.data.lastName);
-        })
-        .catch(function (error: string) {
-          message.error(error);
-        })
-        .finally(function () {});
-    }
-  }, [userData]);
+  const [fName, setFName] = useState<string>(userData.firstName);
+  const [lName, setLName] = useState<string>(userData.lastName);
 
   return (
     <div>

@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 
-const common = require("./routes/CommonRoutes");
 const userRoutes = require("./routes/user_routes");
 const reviewRoutes = require("./routes/review_routes");
 const orderRoutes = require("./routes/order_routes");
@@ -11,6 +10,8 @@ const messageRoutes = require("./routes/message_routes");
 const gigdataRoutes = require("./routes/gigdata_routes");
 const conversationRoutes = require("./routes/conversation_routes");
 const authRoutes = require("./routes/authentication_routes");
+const emailRoutes = require("./routes/email_routes");
+const approveRoutes = require("./routes/approve_routes");
 
 const HttpError = require("./models/http-error");
 const cors = require("cors");
@@ -38,7 +39,9 @@ server.use("/api/gigs", gigdataRoutes);
 server.use("/api/orders", orderRoutes);
 server.use("/api/conversations", conversationRoutes);
 server.use("/api/messages", messageRoutes);
+server.use("/api/emails", emailRoutes);
 server.use("/api/reviews", reviewRoutes);
+server.use("/api/approve", approveRoutes);
 
 server.use((err, req, res, next) => {
   const errStatus = err.status || 500;
@@ -48,7 +51,7 @@ server.use((err, req, res, next) => {
 });
 
 //  users
-server.use("/api", common);
+// server.use("/api", common);
 
 //old one
 server.use((req, res, next) => {

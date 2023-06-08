@@ -1,0 +1,53 @@
+.application-view-container {
+  width: 100%;
+  height: 60px;
+  background-color: red;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.Application-count {
+  width: 10%;
+  color: white;
+  font-size: 18px;
+}
+.applicant-name {
+  width: 30%;
+  font-size: 18px;
+  color: white;
+}
+
+.applicant-email {
+  width: 40%;
+  font-size: 14px;
+  color: white;
+}
+
+.application-buttons {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.review-btn,
+.reject-btn {
+  width: 100px;
+  height: 30px;
+  background-color: rgb(5, 218, 94);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border: 1px solid rgb(5, 218, 94);
+}
+
+.review-btn:hover,
+.reject-btn:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(5, 218, 94);
+  border: 1px solid rgb(5, 218, 94);
+}

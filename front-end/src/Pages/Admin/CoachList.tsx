@@ -19,10 +19,11 @@ import Generate from "../../components/signup/Generate";
 import { PlusOutlined } from "@ant-design/icons";
 import Meta from "antd/es/card/Meta";
 import GenerateLink from "../../components/signup/Generate";
+import newRequest from "../../Utils/newRequest";
 
 const CoachList = () => {
-  const [clients, setClients] = useState<any[]>([]);
-  let numberOfclients = clients.length;
+  const [coaches, setCoaches] = useState<any[]>([]);
+  let numberOfclients = coaches.length;
   // fetch data
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -31,32 +32,22 @@ const CoachList = () => {
   const [serverError, setServerError] = useState<boolean>(false);
 
   useEffect(() => {
-    setSpin(!spin);
-    axios
-      .get("http://localhost:5001/api/getcoaches", {})
-      .then(function (response) {
-        if (
-          response.data.message === "Internal server error.Please Try again"
-        ) {
-          setSpin(false);
-          return setServerError(true);
-        }
-        if (response.status === 200) {
+    const fetchData = async () => {
+      try {
+        setSpin(!spin);
+        const res = await newRequest.get("/users/coaches", {});
+        if (res.status === 200) {
           setServerError(false);
-          setClients(response.data);
-          console.log(response.status);
+          setCoaches(res.data);
+          console.log(res.status);
           return setSpin(false);
         }
-
-        // manage other errors
-      })
-      .catch(function (error) {
+      } catch (error: any) {
         setSpin(false);
         message.error(error);
-      })
-      .finally(function () {
-        // always executed
-      });
+      }
+    };
+    fetchData();
   }, []);
 
   // add columns to the table
@@ -161,7 +152,7 @@ const CoachList = () => {
               </div>
             </div>
 
-            <Table columns={columns} dataSource={clients}></Table>
+            <Table columns={columns} dataSource={coaches}></Table>
           </>
         )}
       </Spin>

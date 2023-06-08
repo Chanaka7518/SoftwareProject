@@ -34,7 +34,6 @@ const coacheSchema = new Schema(
     },
     lLine: {
       type: String,
-      required: true,
     },
     email: {
       type: String,
@@ -51,11 +50,28 @@ const coacheSchema = new Schema(
       required: true,
     },
 
-    socialMediaAccounts: [String],
+    facebook: {
+      type: String,
+    },
+    tiktok: {
+      type: String,
+    },
+    instagram: {
+      type: String,
+    },
 
     certifictes: {
       urls: { type: String },
       pdfData: [Schema.Types.Mixed],
+    },
+
+    isAppliedAsSeller: {
+      type: Boolean,
+      required: true,
+    },
+    isAcceptedSeller: {
+      type: Boolean,
+      required: true,
     },
   },
   { timestamps: true }

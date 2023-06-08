@@ -6,7 +6,7 @@ const commonController = require("../controllers/commonController.js");
 
 //################################## Common ##############################
 //-----------------User log in--------------------------------------------
-commonRouter.post("/login", commonController.login);
+// commonRouter.post("/login", commonController.login);
 
 //-----------------send password rest link--------------------------------
 commonRouter.post(

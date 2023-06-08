@@ -14,7 +14,7 @@ const useSignupClient = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { dispatch } = useAuthContext();
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const signup = async (
     fName: string,
@@ -57,14 +57,7 @@ const useSignupClient = () => {
           ? message.success(response.data.message)
           : message.error(response.data.message);
 
-        if (
-          response.data.userRole === "Client" ||
-          response.data.userRole === "HeadCoach"
-        ) {
-          history("/");
-        } else if (response.data.userRole === "Admin") {
-          history("/alf-admin");
-        }
+        navigate("/login");
         // update loading state
         setIsLoading(false);
       })

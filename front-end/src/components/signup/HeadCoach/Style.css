@@ -84,41 +84,67 @@ body {
   margin-top: 20px;
 }
 
-.next-button {
-  padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #4caf50;
-  color: #fff;
+.coach-button-1 {
+  margin-top: 20px;
+  width: 100px;
+  background-color: rgb(5, 218, 94);
+  color: white;
   border: none;
-  cursor: pointer;
-}
-
-.next-button:hover {
-  background-color: #3e8e41;
-}
-
-.back-button {
+  border: 1px solid rgb(5, 218, 94);
   padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #ccc;
-  color: #fff;
-  border: none;
+  border-radius: 0;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
-
-.back-button:hover {
-  background-color: #999;
-}
-
-.cancel-button {
+.coach-button-1:hover {
+  background-color: white;
+  color: rgb(5, 218, 94);
+  border: none;
+  border: 1px solid rgb(5, 218, 94);
   padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #f44336;
-  color: #fff;
-  border: none;
+  border-radius: 0;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.cancel-button:hover {
-  background-color: #c62828;
+.coach-button-2 {
+  margin-top: 20px;
+  width: 100px;
+  background-color: rgb(255, 255, 255);
+  color: red;
+  border: 1px solid red;
+  padding: 10px 20px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.coach-button-2:hover {
+  background-color: red;
+  color: white;
+  border: 1px solid red;
+}
+
+.coach-button-3 {
+  margin-top: 20px;
+  width: 100px;
+  background-color: red;
+  color: white;
+  border: none;
+  border: 1px solid red;
+  padding: 10px 20px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.coach-button-3:hover {
+  background-color: rgb(255, 255, 255);
+  color: red;
+  border: 1px solid red;
+}
+
+.square-input {
+  border-radius: 0;
+  width: 100%;
 }

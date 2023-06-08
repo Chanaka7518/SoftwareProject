@@ -3,6 +3,7 @@ import { useForm } from "rc-field-form";
 import React, { useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import newRequest from "../../Utils/newRequest";
 
 interface Props {
   openLinkGeneartor: boolean;
@@ -18,25 +19,24 @@ const GenerateLink: React.FC<Props> = ({
   const [email, setEmail] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleOk = (values: any) => {
+  const handleOk = async (values: any) => {
     form.submit();
     setIsLoading(true);
-    axios
-      .post("http://localhost:5001/api/generatelink", {
+
+    try {
+      const res = await newRequest.post("/emails/registerCoach", {
         email: email,
-      })
-      .then(function (response) {
-        if (response.data.message === "Email was  sent successfully") {
-          message.success(response.data.message);
-          setIsLoading(false);
-          return setOpenLinkGeneartor(false);
-        }
-        message.error(response.data.message);
-        setIsLoading(false);
-      })
-      .catch(function (error) {
-        message.error(error.message);
       });
+      if (res.data.message === "Email was  sent successfully") {
+        message.success(res.data.message);
+        setIsLoading(false);
+        return setOpenLinkGeneartor(false);
+      }
+    } catch (err: any) {
+      message.error(err.response.data);
+      console.log(err.response.data);
+      setIsLoading(false);
+    }
   };
   const handleCancel = () => {
     setOpenLinkGeneartor(false);
