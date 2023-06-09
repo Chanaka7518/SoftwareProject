@@ -1,0 +1,99 @@
+/* GigCard.css */
+
+.gig-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #e4e2e2;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.gig-photo {
+  width: 400px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.gig-title-1 {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.seller-name {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #777;
+}
+
+.rating {
+  margin-top: 10px;
+}
+
+.rating-stars {
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 14px;
+  color: #fbbd3b;
+}
+
+.total-sales {
+  display: inline-block;
+  font-size: 14px;
+  color: #777;
+}
+.online-coaching-gigs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.hire-now-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: red;
+  border: 1px solid red;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.hire-now-button:hover {
+  font-size: 16px;
+  font-weight: bold;
+  color: red;
+  background-color: #fff;
+  border: 1px solid red;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* GigPage.css */
+
+.gig-page {
+  width: 90%;
+  margin: 0 5%;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.section-title {
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* #########################service page###################### */
+
+.services-menu {
+  margin-top: 50px;
+  font-size: 30px;
+}

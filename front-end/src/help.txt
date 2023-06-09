@@ -1,0 +1,42 @@
+Primary color: #D63E4D (rich red color)
+Secondary color: #FFFFFF (pure white)
+
+Heading (H1):
+Color: #D63E4D (primary color)
+Font: Montserrat
+Font size: 36px
+
+Subheading (H2):
+Color: #D63E4D (primary color)
+Font: Montserrat
+Font size: 24px
+
+Body text:
+Color: #333333 (dark gray)
+Font: Open Sans
+Font size: 16px
+
+Navigation bar:
+Background color: #FFFFFF (secondary color)
+Text color: #D63E4D (primary color)
+Font: Montserrat
+Font size: 18px
+
+Buttons:
+Background color: #8B0000 (dark red color)
+Text color: #FFFFFF (secondary color)
+Font: Montserrat
+Font size: 16px
+Hover color: #AD2E3D (a slightly darker shade of primary color)
+
+Links:
+Color: #D63E4D (primary color)
+Font: Montserrat
+Font size: 16px
+Hover color: #AD2E3D (a slightly darker shade of primary color)
+
+Footer:
+Background color: #FFFFFF (secondary color)
+Text color: #333333 (dark gray)
+Font: Open Sans
+Font size: 14px
