@@ -74,15 +74,38 @@ const NavBar = () => {
               <Popover
                 content={
                   <Space direction="vertical">
+                    {/* For coaches */}
                     {userRole === "Coach" && (
                       <Link to="/headcoachProfile">Profile</Link>
                     )}
+                    {userRole === "Coach" &&
+                      userData.isAcceptedSeller &&
+                      userData.isAppliedAsSeller && (
+                        <Link to="/dashboard">Dashbord</Link>
+                      )}
+                    {userRole === "Coach" &&
+                      !userData.isAcceptedSeller &&
+                      userData.isAppliedAsSeller && (
+                        <Link to="/dashboard">Dashbord</Link>
+                      )}
+                    {userRole === "Coach" &&
+                      !userData.isAcceptedSeller &&
+                      !userData.isAppliedAsSeller && (
+                        <Link to="/sellerapplication">seller application</Link>
+                      )}
+
+                    {/* For Admin */}
 
                     {userRole === "Admin" && <Unauthorized />}
+
+                    {/* For Clients */}
                     {userRole === "Client" && (
                       <Link to="/clientProfile">Profile</Link>
                     )}
-                    <Link to="/dashboard">Dashboard</Link>
+
+                    {userRole === "Client" && (
+                      <Link to="/dashboard">Dashboard</Link>
+                    )}
 
                     <a onClick={handleClick} style={{ color: "red" }}>
                       Log out

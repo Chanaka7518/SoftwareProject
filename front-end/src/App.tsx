@@ -35,6 +35,7 @@ const App: React.FC = () => {
           <Route path="/signup" element={<ClientSignup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgetpwd" element={<ForgetPwd />} />{" "}
+          <Route path="/sellerapplication" element={<SellerApplication />} />{" "}
           <Route
             path="/newPassword/:id/:token"
             element={<CreateNewPassword />}
