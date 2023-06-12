@@ -1,0 +1,49 @@
+/* Left side */
+.buy-service-page {
+  width: 90%;
+  margin: 0 5%;
+  /*Change this with screensizes */
+}
+
+/* Right side */
+.pkg-service-details .pkg-services-contsiner {
+  width: 90%;
+  margin-left: 10%;
+  background-color: aqua;
+}
+
+.pay-now-btn {
+  width: 150px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.pay {
+  background-color: #06f50a;
+}
+.pay:hover {
+  background-color: #067c08;
+}
+
+.cancell {
+  background-color: red;
+}
+.cancell:hover {
+  background-color: rgb(126, 8, 8);
+}
+
+.pay-now-btn:hover {
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+}
+.buy-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

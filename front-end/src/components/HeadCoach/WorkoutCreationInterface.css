@@ -1,0 +1,32 @@
+.card-workout-creation {
+  width: 45%;
+  height: 380px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: rgb(190, 151, 151);
+}
+
+.card-content-workout {
+  text-align: center;
+}
+
+.plan-name-workout {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.create-plan-btn-workout {
+  background-color: rgb(5, 218, 94);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.create-plan-btn-workout:hover {
+  opacity: 0.8;
+}

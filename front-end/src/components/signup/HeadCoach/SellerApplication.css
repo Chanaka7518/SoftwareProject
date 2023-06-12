@@ -1,0 +1,58 @@
+.seller_application_container {
+  max-width: 800px;
+  margin: 5px auto;
+  padding: 20px;
+  background-color: rgba(5, 218, 94, 0.1);
+  border: 2px solid red;
+  border-radius: 10px;
+}
+
+.seller-form-title {
+  color: red;
+  text-align: center;
+  font-size: 58px;
+}
+
+.seller-form {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.seller-labels {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.seller-inputs {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+}
+
+.seller-form-submit {
+  color: rgb(5, 218, 94);
+  border: 1px solid rgb(5, 218, 94);
+  background-color: white;
+  width: 100%;
+  height: 40px;
+}
+.seller-form-submit:hover {
+  color: white;
+  border: 1px solid rgb(5, 218, 94);
+  background-color: rgb(5, 218, 94);
+}
+
+.seller-form-cancell {
+  margin-top: 10px;
+  color: red;
+  border: 1px solid red;
+  background-color: white;
+  width: 100%;
+  height: 40px;
+}
+.seller-form-cancell:hover {
+  color: white;
+  border: 1px solid red;
+  background-color: red;
+}

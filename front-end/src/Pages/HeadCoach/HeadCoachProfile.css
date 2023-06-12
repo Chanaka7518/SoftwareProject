@@ -1,0 +1,27 @@
+.coach-details-update-btn {
+  width: 100%;
+  height: 40px;
+  color: rgb(0, 240, 160);
+  border: 1px solid rgb(0, 240, 160);
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.coach-details-cancell-btn {
+  width: 100%;
+  height: 40px;
+  color: red;
+  border: 1px solid red;
+  background-color: white;
+}
+.coach-details-update-btn:hover {
+  color: white;
+  border: rgb(0, 240, 160);
+  background-color: rgb(0, 240, 160);
+}
+
+.coach-details-cancell-btn:hover {
+  color: white;
+  border: red;
+  background-color: red;
+}

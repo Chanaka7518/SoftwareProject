@@ -1,0 +1,47 @@
+.workout-creation-div {
+  width: 50%;
+  margin: 20px auto;
+  border: 1px solid rgb(219, 172, 172);
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.workout-creation-input {
+  border-radius: 0;
+}
+
+.workout-creation-button {
+  color: rgb(5, 218, 94);
+  background-color: white;
+  border: 1px solid rgb(5, 218, 94);
+  width: 100%;
+  height: 40px;
+}
+.workout-creation-button:hover {
+  color: white;
+  background-color: rgb(5, 218, 94);
+  border: 1px solid rgb(5, 218, 94);
+  width: 100%;
+  height: 40px;
+}
+.create-workout-title {
+  font-size: 30px;
+}
+
+.workout-creation-cancel-button {
+  color: red;
+  background-color: white;
+  border: 1px solid red;
+  margin-top: 10px;
+  width: 100%;
+  height: 40px;
+}
+.workout-creation-cancel-button:hover {
+  color: rgb(255, 255, 255);
+  background-color: red;
+  border: 1px solid red;
+  margin-top: 10px;
+  width: 100%;
+  height: 40px;
+}

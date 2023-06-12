@@ -1,0 +1,9 @@
+.ant-menu-title-content {
+  color: rgb(0, 240, 160) !important;
+}
+.ant-menu {
+  min-width: 200px;
+  margin-bottom: 10px;
+  min-height: 100%;
+  background-color: white;
+}
