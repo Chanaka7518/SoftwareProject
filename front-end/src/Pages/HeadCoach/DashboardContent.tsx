@@ -1,11 +1,13 @@
 import { Card, Col, Row, Typography } from "antd";
 import React, { useState, useEffect } from "react";
 import { CaretUpFilled } from "@ant-design/icons";
+import "./Statistics-card.css";
 
 import { useAuthContext } from "../../Hooks/useAuthContext";
 import Meta from "antd/es/card/Meta";
 import { useNavigate } from "react-router";
 import newRequest from "../../Utils/newRequest";
+import StatisticsCard from "./StatisticsCard";
 
 const OCPhoto: string = new URL(`./online-coaching.jpg`, import.meta.url).href;
 const PTPhoto: string = new URL(`./personal-Training.jpg`, import.meta.url)
@@ -50,7 +52,7 @@ const DISPLAY_SIZES_COL_DATE_TIME = {
 };
 
 const gridStyle: React.CSSProperties = {
-  width: "25%",
+  width: "33.3%",
   textAlign: "left",
   // borderRight: "1px solid rgba(0,23,f,0.5)",
 };
@@ -78,121 +80,31 @@ const DashboardContent: React.FC<Props> = ({ setSelectedMenu }) => {
 
   return (
     <div>
-      <Row
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          marginBottom: "10px",
-        }}
-      >
-        <Col {...DISPLAY_SIZES_COL_DATE_TIME}>
-          <Card
-            style={{
-              width: "100% ",
-              display: "flex",
-              justifyContent: "center",
-              background: "#d3d3d3",
-            }}
-          >{`Hi ${fName} ${lName}`}</Card>
-        </Col>
+      <Row>
+        {/* onClick={() => navigateTo("/mysales")} */}
+        <StatisticsCard title="Sales Revenue" value={50000} type="money" />
+        {/* onClick={() => navigateTo("/myclients")} */}
+        <StatisticsCard title="Number of Clients" value={100} type="number" />
+        {/* onClick={() => navigateTo("/workouts")} */}
+        <StatisticsCard title="Number of Workouts" value={500} type="number" />
       </Row>
-      {/*Row 1 */}
-      <Row
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-        }}
-        {...DISPLAY_SIZES_ROW}
-      >
-        {/* //sales */}
-        <Card style={{ width: "100%" }}>
-          <Card.Grid
-            hoverable
-            style={gridStyle}
-            onClick={() => navigateTo("/mysales")}
-          >
-            <Typography.Title level={4} style={{ marginTop: "0px" }}>
-              Sales
-            </Typography.Title>
-            <Typography.Title
-              style={{ marginBottom: "0px", color: "#cad2c5" }}
-              level={4}
-            >
-              $1245.67
-            </Typography.Title>
-            <Typography.Title
-              style={{ color: "green", marginTop: "0px" }}
-              level={4}
-            >
-              <CaretUpFilled />
-              20% since last month
-            </Typography.Title>
-          </Card.Grid>
-          {/* Clients */}
-          <Card.Grid
-            hoverable
-            style={gridStyle}
-            onClick={() => navigateTo("/myclients")}
-          >
-            <Typography.Title level={4} style={{ marginTop: "0px" }}>
-              Clients
-            </Typography.Title>
-            <Typography.Title
-              style={{ marginBottom: "0px", color: "#cad2c5" }}
-              level={4}
-            >
-              50
-            </Typography.Title>
-            <Typography.Title
-              style={{ color: "green", marginTop: "0px" }}
-              level={4}
-            >
-              <CaretUpFilled />
-              10% since last month
-            </Typography.Title>
-          </Card.Grid>
-          {/* Workouts */}
-          <Card.Grid
-            hoverable
-            style={gridStyle}
-            onClick={() => navigateTo("/workouts")}
-          >
-            <Typography.Title level={4} style={{ marginTop: "0px" }}>
-              Wokouts
-            </Typography.Title>
-            <Typography.Title
-              style={{ marginBottom: "0px", color: "#cad2c5" }}
-              level={4}
-            >
-              56
-            </Typography.Title>
-            <Typography.Title
-              style={{ color: "green", marginTop: "0px" }}
-              level={4}
-            >
-              <CaretUpFilled />
-              12% since last month
-            </Typography.Title>
-          </Card.Grid>
-          {/* My team */}
-          <Card.Grid
-            hoverable
-            style={gridStyle}
-            onClick={() => navigateTo("/myteam")}
-          >
-            <Typography.Title level={4} style={{ marginTop: "0px" }}>
-              My Team
-            </Typography.Title>
-            <Typography.Title
-              style={{ marginBottom: "0px", color: "#cad2c5" }}
-              level={4}
-            >
-              12
-            </Typography.Title>
-          </Card.Grid>
-        </Card>
+      <Row>
+        <p
+          style={{
+            width: "100% ",
+            height: "60px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            background: "rgb(0, 240, 160)",
+            padding: "5px",
+            color: "white",
+            fontSize: "24px",
+          }}
+        >
+          Your Packages
+        </p>
       </Row>
-      <Typography.Title>Packages</Typography.Title>
       {/* Packages */}
       <Row style={{ display: "flex", justifyContent: "space-around" }}>
         <Card

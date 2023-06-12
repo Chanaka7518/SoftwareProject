@@ -1,10 +1,13 @@
 import React, { useState, useRef } from "react";
-import { Input, Modal, Form, message } from "antd";
+import { Input, Modal, Form, message, Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import newRequest from "../../Utils/newRequest";
 
-// for reset pwd
-import { ToastContainer, toast } from "react-toastify";
+const antIcon = (
+  <LoadingOutlined style={{ fontSize: 24, color: "green" }} spin />
+);
 
 const ForgetPwd: React.FC = () => {
   const [open, setOpen] = useState(true);
@@ -13,30 +16,26 @@ const ForgetPwd: React.FC = () => {
   const navigateTo = useNavigate();
   const [form] = Form.useForm();
 
-  const handleOk = (event: any) => {
+  const handleOk = async (event: any) => {
     // form.submit();
     event.preventDefault();
     setIsLoading(true);
-    axios
-      .post("http://localhost:5001/api/sendPwdResetLink", {
-        email: email,
-      })
-      .then((response) => {
-        if (response.data.message === "Email was  sent successfully") {
-          message.success(response.data.message);
-          setIsLoading(false);
-          setOpen(!open);
-          navigateTo("/success");
-        } else {
-          message.error(response.data.message);
-          setIsLoading(false);
-          navigateTo("/login");
+
+    try {
+      const res = await newRequest.post(
+        "http://localhost:5001/api/emails/pwd-reset-link",
+        {
+          email: email,
         }
-      })
-      .catch(function (error) {
-        message.error(error);
-        setIsLoading(false);
-      });
+      );
+      message.success(res.data);
+      setIsLoading(false);
+      setOpen(!open);
+      navigateTo("/success");
+    } catch (err: any) {
+      message.error(err.message);
+      setIsLoading(false);
+    }
   };
 
   const handleCancel = () => {
@@ -61,26 +60,28 @@ const ForgetPwd: React.FC = () => {
           initialValues={{ remember: true }}
           onFinish={onFinish}
         >
-          <Form.Item
-            style={{ margin: "30px 0px" }}
-            name="email"
-            rules={[
-              {
-                type: "email",
-                message: "The input is not valid E-mail!",
-              },
-              {
-                required: true,
-                message: "Please input your E-mail!",
-              },
-            ]}
-          >
-            <Input
-              placeholder="Enter your email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
-          </Form.Item>
+          <Spin spinning={isLoading} indicator={antIcon}>
+            <Form.Item
+              style={{ margin: "30px 0px" }}
+              name="email"
+              rules={[
+                {
+                  type: "email",
+                  message: "The input is not valid E-mail!",
+                },
+                {
+                  required: true,
+                  message: "Please input your E-mail!",
+                },
+              ]}
+            >
+              <Input
+                placeholder="Enter your email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </Form.Item>
+          </Spin>
         </Form>
       </Modal>
     </>

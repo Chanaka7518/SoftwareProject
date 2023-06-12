@@ -56,7 +56,7 @@ const acceptApplication = async (req, res, next) => {
       html: `
       <html>
         <body>
-          <h2 style="color: #008000;">Seller Account Approved</h2>
+          <h2 style="color: rgb(5, 218, 94);">Seller Account Approved</h2>
           <p>
             Congratulations! Your seller account application has been approved.
           </p>

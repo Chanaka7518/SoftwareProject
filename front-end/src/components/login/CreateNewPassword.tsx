@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Input, Modal, Form, Button, Space, message } from "antd";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router";
+import newRequest from "../../Utils/newRequest";
 
 const CreateNewPassword: React.FC = () => {
   const [open, setOpen] = useState(true);
@@ -14,45 +15,25 @@ const CreateNewPassword: React.FC = () => {
 
   const navigateTo = useNavigate();
 
-  const userValid = async () => {
-    axios
-      .get(`http://localhost:5001/api/newPassword/${id}/${token}`)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-        console.log("Token expired. Generate new token");
-      })
-      .then(function () {
-        // always executed
-      });
-  };
-
-  useEffect(() => {
-    userValid();
-  }, []);
-
   const handleOk = async () => {
     form.submit();
     setIsLoading(true);
-    axios
-      .post(`http://localhost:5001/api/changePassword/${id}/${token}`, {
-        password: pwd,
-      })
-      .then(function (response) {
-        if (response.data === "password has been updated") {
-          message.success(response.data);
-          navigateTo("/login");
-        } else {
-          message.error(response.data);
+
+    try {
+      const res = await newRequest.post(
+        `/auth//password-reset/${id}/${token}`,
+        {
+          password: pwd,
         }
-        setIsLoading(false);
-      })
-      .catch(function (error) {
-        message.error(error);
-        setIsLoading(false);
-      });
+      );
+
+      message.success(res.data);
+      setIsLoading(false);
+      navigateTo("/login");
+    } catch (err: any) {
+      message.error(err.message);
+      setIsLoading(false);
+    }
   };
 
   const handleCancel = () => {

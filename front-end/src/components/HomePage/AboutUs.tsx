@@ -5,7 +5,7 @@ const img: string = new URL(`../../Assets/aboutUs.png`, import.meta.url).href;
 const AboutUs = () => {
   const navigateTo = useNavigate();
   return (
-    <div className="AboutUs" id="aboutus">
+    <div className="AboutUs">
       <h2 className="aboutTitle">About Us</h2>
       <div className="aboutBoxes">
         <div className="AboutImgContainer1">

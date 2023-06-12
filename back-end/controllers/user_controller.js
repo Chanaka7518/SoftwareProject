@@ -146,7 +146,26 @@ const fillApplication = async (req, res, next) => {
   res.status(200).send("Your application has sent for the review");
 };
 
+// update coach
+
+const updateCoach = async (req, res, next) => {
+  try {
+    if (req.userRole !== "Coach" || req.userId !== req.params.id) {
+      return next(createError(409, "You are not authorized "));
+    }
+
+    await Coach.findByIdAndUpdate(req.params.id, {
+      ...req.body,
+    });
+
+    res.status(200).send("Details has been updated");
+  } catch (err) {
+    return next(err);
+  }
+};
+
 exports.deleteUser = deleteUser;
 exports.getCoaches = getCoaches;
 exports.getCoach = getCoach;
 exports.fillApplication = fillApplication;
+exports.updateCoach = updateCoach;

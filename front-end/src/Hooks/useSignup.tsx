@@ -41,23 +41,24 @@ const useSignup = () => {
         whatsApp: whatsapp,
         email: email,
       });
-      console.log(res);
+
       if (res.data === "New user has been created!") {
         message.success(res.data);
+        dispatch({ type: "LOGIN", payload: res.data });
+
+        navigate("/login");
       } else {
         message.error(res.data);
+        navigate("/");
       }
 
       // update the auth context
-      dispatch({ type: "LOGIN", payload: res.data });
-
-      navigate("/login");
 
       setIsLoading(false);
     } catch (err: any) {
       message.error(err.response.data);
-      console.log(err.response.data);
       setIsLoading(false);
+      navigate("/");
     }
   };
 

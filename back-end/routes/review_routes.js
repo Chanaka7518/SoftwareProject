@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.post("/", verifyToken, Review.createReview);
 router.get("/:id", verifyToken, Review.getReviews);
+router.get("/all/:coachId", verifyToken, Review.getReviewsByCoachId);
 router.delete("/:id", verifyToken, Review.deleteReview);
 module.exports = router;

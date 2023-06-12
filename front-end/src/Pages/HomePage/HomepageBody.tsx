@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./HomepageBody.css";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
@@ -13,7 +12,7 @@ import ContactUs from "../../components/HomePage/ContactUs";
 import Aim from "../../components/HomePage/Aim";
 import Testimonials from "../../components/HomePage/Testimonials";
 
-const HomepageBody = () => {
+const HomepageBody: React.FC = () => {
   const { userData } = useAuthContext();
   const userRole: string = userData?.userRole;
 
@@ -23,13 +22,22 @@ const HomepageBody = () => {
         <div className="container">
           <NavBar />
           <HeroBanner />
+          <div id="aboutus">
+            <AboutUs />
+          </div>
 
-          <AboutUs />
           <Aim />
           <Services />
-          <OurPackages />
+          <div id="packages">
+            <OurPackages />
+          </div>
+
           <Testimonials />
-          <ContactUs />
+          <div id="contactus">
+            {" "}
+            <ContactUs />
+          </div>
+
           <Footer />
         </div>
       )}

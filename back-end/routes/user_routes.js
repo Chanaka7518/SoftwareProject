@@ -9,4 +9,6 @@ router.get("/coach/:id", verifyToken, Users.getCoach);
 
 router.post("/coach/application/:id", verifyToken, Users.fillApplication);
 
+router.post("/coach/details/:id", verifyToken, Users.updateCoach);
+
 module.exports = router;

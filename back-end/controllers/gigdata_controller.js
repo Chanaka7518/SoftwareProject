@@ -3,6 +3,7 @@ const createError = require("../utils/createError");
 
 const createGig = async (req, res, next) => {
   // req.userRole comes from token
+
   if (req.userRole !== "Coach") {
     return next(createError(403, "Only sellers can create a service"));
   }
@@ -11,10 +12,10 @@ const createGig = async (req, res, next) => {
     sellerId: req.userId, // from jwt verification file
     ...req.body,
   });
-
+  console.log("hi");
   try {
     const savedGig = await newGig.save();
-    res.status(201).json(savedGig);
+    res.status(201).send("Gig has been successfully created");
   } catch (err) {
     next(err);
   }
@@ -43,6 +44,26 @@ const getGig = async (req, res, next) => {
     next(err);
   }
 };
+const getGigByUserId = async (req, res, next) => {
+  const category = req.query.category;
+
+  if (req.userId !== req.params.userId && req.userRole !== "Coach") {
+    return next(createError(401, "You are not authorized"));
+  }
+
+  const filters = {
+    category: category,
+    sellerId: req.params.userId,
+  };
+  try {
+    const gig = await Gig.findOne(filters);
+
+    if (!gig) return res.status(404).send("You have not created a gig yet");
+    res.status(200).send(gig);
+  } catch (err) {
+    next(err);
+  }
+};
 
 // To get all the gigs
 
@@ -62,7 +83,28 @@ const getGigs = async (req, res, next) => {
   }
 };
 
+const updateGig = async (req, res, send) => {
+  const { Title, des } = req.body;
+  const gigId = req.params.gigId;
+
+  try {
+    const gig = await Gig.findById(gigId);
+    if (!gig) {
+      return next(createError(404, "Gig not found"));
+    }
+    await Gig.findByIdAndUpdate(gigId, {
+      Title: Title,
+      des: des,
+    });
+    res.status(200).send("Gig has been updated");
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.deleteGig = deleteGig;
 exports.createGig = createGig;
 exports.getGig = getGig;
+exports.getGigByUserId = getGigByUserId;
 exports.getGigs = getGigs;
+exports.updateGig = updateGig;

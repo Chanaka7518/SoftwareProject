@@ -38,10 +38,11 @@ const NavBar = () => {
         </div>
         <nav>
           <div className="pages-nav">
-            <Link to="/">Home</Link>
-            <Link to="#aboutus">About Us</Link>
-            <Link to="/services">Services</Link>
-            <Link to="/coaching">Contact Us</Link>
+            <a href="/">Home</a>
+            <a href="/#aboutus">About Us</a>
+            <a href="/services">Services</a>
+            <a href="/#packages">Packages</a>
+            <a href="/#contactus">Contact Us</a>
           </div>
           {!userData && (
             <div className="buttonContainers">

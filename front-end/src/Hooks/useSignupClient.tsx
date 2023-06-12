@@ -3,6 +3,7 @@ import { useAuthContext } from "./useAuthContext";
 import axios from "axios";
 import { message } from "antd";
 import { useNavigate } from "react-router-dom";
+import newRequest from "../Utils/newRequest";
 
 interface SignupResult {
   signup: (email: string, password: string) => Promise<void>;
@@ -27,43 +28,33 @@ const useSignupClient = () => {
     setIsLoading(true);
     setError(null);
 
-    axios
-      .post("http://localhost:5001/api/signup", {
+    try {
+      const res = await newRequest.post("/auth/register/client", {
         firstName: fName,
         lastName: lastName,
         password: password,
         email: email,
         mobileNumber: mobileNumber,
         gender: gender,
-      })
-      .then(function (response) {
-        console.log(response.data);
+      });
 
-        // store userdata in the local storage
-        localStorage.setItem(
-          "userData",
-          JSON.stringify({
-            userId: response.data.userId,
-            token: response.data.token,
-            email: response.data.email,
-            userRole: response.data.userRole,
-          })
-        );
-
-        //    // update the auth context
-        dispatch({ type: "LOGIN", payload: response.data });
-
-        response.data.message === "Registration successful"
-          ? message.success(response.data.message)
-          : message.error(response.data.message);
+      if (res.data === "New user has been created!") {
+        message.success(res.data);
+        // update the auth context
+        dispatch({ type: "LOGIN", payload: res.data });
 
         navigate("/login");
-        // update loading state
-        setIsLoading(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      } else {
+        message.error(res.data);
+        navigate("/");
+      }
+
+      setIsLoading(false);
+    } catch (err: any) {
+      message.error(err.message);
+      setIsLoading(false);
+      navigate("/");
+    }
   };
 
   return { signup, isLoading, error };

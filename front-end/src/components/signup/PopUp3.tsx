@@ -31,7 +31,7 @@ const PopUp3: React.FC<Props> = ({
   onFinish,
 }) => {
   const urls = useRef<any[]>([]);
-  const data = useRef<string[]>([]);
+  let data = useRef<string[]>([]);
   const handleUpload = (file: any) => {
     data.current.push(file);
   };
@@ -59,6 +59,7 @@ const PopUp3: React.FC<Props> = ({
               console.log("File available at", downloadURL);
 
               resolve(downloadURL);
+              data.current = [];
             });
           }
         );

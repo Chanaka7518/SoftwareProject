@@ -19,10 +19,11 @@ import MyTeam from "./components/HeadCoach/MyTeam";
 import ServicesPage from "./Pages/ServicesPage/ServicesPage";
 import ClientGigView from "./Pages/Client Views/ClientGigView";
 
-// import Test from "./components/signup/HeadCoach/Test";
 import Signup from "./components/signup/HeadCoach/SignUp";
 import UnderReview from "./components/Results/UnderReview";
 import SellerApplication from "./components/signup/HeadCoach/SellerApplication";
+import CreateWorkoutOC from "./components/HeadCoach/CreateWorkoutOC";
+import CreateWorkoutPT from "./components/HeadCoach/CreateWorkoutPT";
 
 const App: React.FC = () => {
   return (
@@ -51,6 +52,14 @@ const App: React.FC = () => {
             element={<div>Hi this is client profile</div>}
           />
           <Route path="/dashboard" element={<UserDashboard />} />
+          <Route
+            path="/dashbord/createplan/onlinecoaching"
+            element={<CreateWorkoutOC />}
+          />
+          <Route
+            path="/dashbord/createplan/personaltraining"
+            element={<CreateWorkoutPT />}
+          />
           <Route path="/success" element={<Success />} />
           <Route path="/workouts" element={<Workouts />} />
           <Route path="/coaching" element={<Coaching />} />

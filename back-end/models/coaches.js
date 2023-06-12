@@ -24,6 +24,9 @@ const coacheSchema = new Schema(
       type: String,
       required: true,
     },
+    age: {
+      type: String,
+    },
     moNumber: {
       type: String,
       required: true,
@@ -72,6 +75,21 @@ const coacheSchema = new Schema(
     isAcceptedSeller: {
       type: Boolean,
       required: true,
+    },
+    totalSales: {
+      type: Number,
+      default: 0,
+    },
+    totalRatings: {
+      type: Number,
+      default: 0,
+    },
+    totalStars: {
+      type: Number,
+      default: 0,
+    },
+    reviewIds: {
+      type: [String],
     },
   },
   { timestamps: true }

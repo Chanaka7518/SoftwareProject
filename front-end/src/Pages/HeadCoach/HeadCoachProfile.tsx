@@ -1,9 +1,24 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Input, Col, Form, Space, Button, Menu, message, Rate } from "antd";
+import React, { useEffect, useRef, useState } from "react";
+
+import {
+  Input,
+  Col,
+  Form,
+  Space,
+  Menu,
+  message,
+  Rate,
+  Spin,
+  Select,
+} from "antd";
 import { useAuthContext } from "../../Hooks/useAuthContext";
 import Reviews from "./Reviews";
 import SocialAccounts from "./SocialAccounts";
+import "./AntMenu.css";
+import newRequest from "../../Utils/newRequest";
+
+import "./HeadCoachProfile.css";
+import { Option } from "antd/es/mentions";
 
 //AVATAR
 
@@ -19,249 +34,288 @@ const DISPLAY_SIZES = {
   xl: { span: 12, offset: 6 },
 };
 
-const HeadCoachProfile = () => {
+const HeadCoachProfile: React.FC = () => {
   const img1: string = new URL(`../profile.png`, import.meta.url).href;
   const { userData } = useAuthContext();
-  let userId = userData?.userId;
+
+  let userId = useRef<string>(userData?._id);
 
   const [fName, setFName] = useState<string>("Chanaka");
   const [lName, setLName] = useState<string>("");
   const [age, setAge] = useState<string>("");
   const [moNumber, setMoNumber] = useState<string>("");
   const [whatsAppNumber, setWhatsAppNumber] = useState<string>("");
-  const [landLine, setLandLine] = useState<string>("");
+
   const [email, setEmail] = useState<string>("");
-  const [weight, setWeight] = useState<string>("");
-  const [height, setHeight] = useState<string>("");
   const [gender, setGender] = useState<string>("");
+  const [fb, setFb] = useState<string>("");
+  const [insta, setInsta] = useState<string>("");
+  const [tiktok, setTiktok] = useState<string>("");
+
+  //new values
+  const [newfName, setNewFName] = useState<string>("Chanaka");
+  const [newlName, setNewLName] = useState<string>("");
+  const [newAge, setNewAge] = useState<string>("");
+  const [newMoNumber, setNewMoNumber] = useState<string>("");
+  const [newWhatsAppNumber, setNewWhatsAppNumber] = useState<string>("");
+  const [newGender, setNewGender] = useState<string>("");
+  const [newFb, setNewFb] = useState<string>("");
+  const [newInsta, setNewInsta] = useState<string>("");
+  const [newTiktok, setNewTiktok] = useState<string>("");
 
   const [selectedMenu, setSelectedMenu] = useState<string>("user");
   const [rating, setRating] = useState<number>(4);
 
+  const [isLoading, setIsloading] = useState<boolean>(false);
+
   useEffect(() => {
-    if (userData?.userId) {
-      axios
-        .get(`http://localhost:5001/api/coach/${userId}`, {})
-        .then(function (response) {
-          setFName(response.data.firstName);
-          setLName(response.data.lastName);
-          setAge(response.data.age);
-          setMoNumber(response.data.moNumber);
-          setWhatsAppNumber(response.data.whatsApp);
-          setLandLine(response.data.lLine);
-          setEmail(response.data.email);
-          console.log(email);
-          setGender(response.data.gender);
-          console.log(response.data);
-        })
-        .catch(function (error) {
-          message.error(error);
-        })
-        .finally(function () {});
+    if (!userData) {
+      userId.current = userData?._id;
     }
-  }, [userData]);
+    setIsloading(true);
+    const fetchData = async () => {
+      try {
+        const res = await newRequest.get(`/users/coach/${userId.current}`, {});
+        console.log(res.data);
+        setFName(res.data.firstName);
+        setLName(res.data.lastName);
+        setAge(res.data.age);
+        setMoNumber(res.data.moNumber);
+        setWhatsAppNumber(res.data.whatsApp);
+        setEmail(res.data.email);
+        setGender(res.data.gender);
+        setFb(res.data.facebook);
+        setInsta(res.data.instagram);
+        setTiktok(res.data.tiktok);
+        setIsloading(false);
+      } catch (err: any) {
+        message.error(err.message);
+        setIsloading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const updateDetails = async () => {
+    setIsloading(true);
+    try {
+      const res = await newRequest.post(
+        `/users/coach/details/${userId.current}`,
+        {
+          firstName: newfName === "" ? fName : newfName,
+          lastName: newlName === "" ? lName : newlName,
+          age: newAge === "" ? age : newAge,
+          moNumber: newMoNumber === "" ? moNumber : newMoNumber,
+          whatsApp:
+            newWhatsAppNumber === "" ? whatsAppNumber : newWhatsAppNumber,
+          gender: newGender === "" ? gender : newGender,
+          facebook: newFb === "" ? fb : newFb,
+          instagram: newInsta === "" ? insta : newInsta,
+          tiktok: newTiktok === "" ? tiktok : newTiktok,
+        }
+      );
+      message.success(res.data);
+      setIsloading(false);
+    } catch (err: any) {
+      message.error(err.message);
+      setIsloading(false);
+    }
+  };
 
   return (
     <div>
-      <Space
-        direction="vertical"
-        style={{
-          width: "100%",
-          paddingTop: "10px",
-        }}
-      >
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <img
-            src={img1}
-            style={{
-              width: "100px",
-              height: "100px",
-              borderRadius: "50%",
-            }}
-          />
-        </div>
-
-        <Col
-          {...DISPLAY_SIZES}
-          style={{ display: "flex", justifyContent: "center" }}
+      <Spin spinning={isLoading}>
+        <Space
+          direction="vertical"
+          style={{
+            width: "100%",
+            paddingTop: "10px",
+          }}
         >
-          <Rate allowHalf disabled defaultValue={rating} />
-        </Col>
-        <p style={{ display: "flex", justifyContent: "center" }}>
-          Welcome {fName}
-        </p>
-        <div>
-          <Col {...DISPLAY_SIZES}>
-            <Menu
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <img
+              src={img1}
               style={{
-                background: "white",
-                color: "black",
-                backgroundColor: "rgba(0,255,0,0.25)",
-                minWidth: "200px",
+                width: "100px",
+                height: "100px",
+                borderRadius: "50%",
               }}
-              theme="light"
-              mode="horizontal"
-              defaultSelectedKeys={["user"]}
-              onClick={({ key }) => {
-                setSelectedMenu(key);
-              }}
-              items={[
-                { label: "User Details", key: "user" },
-                { label: "Contact", key: "contact" },
-                { label: "Accounts", key: "socialAccounts" },
-                { label: "Reviews", key: "reviews" },
-              ]}
-            ></Menu>
-          </Col>
+            />
+          </div>
 
-          <Form
-            name="form_item_path"
-            onFinish={onFinish}
-            layout="horizontal"
-            labelCol={{ span: 6 }}
-            labelAlign="left"
+          <Col
+            {...DISPLAY_SIZES}
+            style={{ display: "flex", justifyContent: "center" }}
           >
-            <Space direction="vertical" style={{ width: "100%" }}>
-              {selectedMenu === "user" && (
-                <div>
-                  <Col {...DISPLAY_SIZES}>
-                    <Form.Item label="First Name">
-                      <Input
-                        style={{ width: "100%" }}
-                        value={fName}
-                        onChange={(e) => {
-                          setFName(e.target.value);
-                        }}
-                      />
-                    </Form.Item>
-                  </Col>
-                  <Col {...DISPLAY_SIZES}>
-                    <Form.Item label="Last Name">
-                      <Input
-                        onChange={(e) => {
-                          setLName(e.target.value);
-                        }}
-                        value={lName}
-                      />
-                    </Form.Item>
-                  </Col>
-                  <Col {...DISPLAY_SIZES}>
-                    <Form.Item label="Age">
-                      <Input
-                        onChange={(e) => {
-                          setAge(e.target.value);
-                        }}
-                        value={age}
-                      />
-                    </Form.Item>
-                  </Col>
-                  <Col {...DISPLAY_SIZES}>
-                    <Form.Item label="Weight">
-                      <Input
-                        onChange={(e) => {
-                          setWeight(e.target.value);
-                        }}
-                        value={weight}
-                      />
-                    </Form.Item>
-                  </Col>
-                  <Col {...DISPLAY_SIZES}>
-                    <Form.Item label="Height">
-                      <Input
-                        onChange={(e) => {
-                          setHeight(e.target.value);
-                        }}
-                        value={height}
-                      />
-                    </Form.Item>
-                  </Col>
-                  <Col {...DISPLAY_SIZES}>
-                    <Form.Item label="Gender">
-                      <Input
-                        onChange={(e) => {
-                          setGender(e.target.value);
-                        }}
-                        value={gender}
-                      />
-                    </Form.Item>
-                  </Col>
-                </div>
-              )}
-              {selectedMenu === "contact" && (
-                <div>
-                  <Col {...DISPLAY_SIZES}>
-                    <Form.Item label="Mobile">
-                      <Input
-                        onChange={(e) => {
-                          setMoNumber(e.target.value);
-                        }}
-                        value={moNumber}
-                      />
-                    </Form.Item>
-                  </Col>
-                  <Col {...DISPLAY_SIZES}>
-                    <Form.Item label="WhatsApp">
-                      <Input
-                        value={whatsAppNumber}
-                        onChange={(e) => {
-                          setWhatsAppNumber(e.target.value);
-                        }}
-                      />
-                    </Form.Item>
-                  </Col>
-                  <Col {...DISPLAY_SIZES}>
-                    <Form.Item label="Landline">
-                      <Input
-                        value={landLine}
-                        onChange={(e) => {
-                          setLandLine(e.target.value);
-                        }}
-                      />
-                    </Form.Item>
-                  </Col>
-                  <Col {...DISPLAY_SIZES}>
-                    <Form.Item label="email">
-                      <Input
-                        value={email}
-                        onChange={(e) => {
-                          setEmail(e.target.value);
-                        }}
-                      />
-                    </Form.Item>
-                  </Col>
-                </div>
-              )}
+            <Rate allowHalf disabled defaultValue={rating} />
+          </Col>
+          <p style={{ display: "flex", justifyContent: "center" }}>
+            Welcome {fName}
+          </p>
+          <div>
+            <Col {...DISPLAY_SIZES}>
+              <Menu
+                style={{ backgroundColor: "white" }}
+                theme="light"
+                mode="horizontal"
+                defaultSelectedKeys={["user"]}
+                onClick={({ key }) => {
+                  setSelectedMenu(key);
+                }}
+                items={[
+                  {
+                    label: "User Details",
+                    key: "user",
+                  },
+                  { label: "Contact", key: "contact" },
+                  { label: "Accounts", key: "socialAccounts" },
+                  { label: "Reviews", key: "reviews" },
+                ]}
+              ></Menu>
+            </Col>
 
-              {/* Reviews */}
-              {selectedMenu === "reviews" && (
-                <Col {...DISPLAY_SIZES}>
-                  {" "}
-                  <Reviews />
-                </Col>
-              )}
+            <Form
+              name="form_item_path"
+              onFinish={onFinish}
+              layout="horizontal"
+              labelCol={{ span: 6 }}
+              labelAlign="left"
+            >
+              <Space direction="vertical" style={{ width: "100%" }}>
+                {selectedMenu === "user" && (
+                  <div>
+                    <Col {...DISPLAY_SIZES}>
+                      <Form.Item label="First Name">
+                        <Input
+                          style={{ borderRadius: "0px" }}
+                          value={fName}
+                          onChange={(e) => {
+                            setNewFName(e.target.value);
+                          }}
+                        />
+                      </Form.Item>
+                    </Col>
+                    <Col {...DISPLAY_SIZES}>
+                      <Form.Item label="Last Name">
+                        <Input
+                          style={{ borderRadius: "0px" }}
+                          onChange={(e) => {
+                            setNewLName(e.target.value);
+                          }}
+                          value={lName}
+                        />
+                      </Form.Item>
+                    </Col>
+                    <Col {...DISPLAY_SIZES}>
+                      <Form.Item label="Age">
+                        <Input
+                          style={{ borderRadius: "0px" }}
+                          onChange={(e) => {
+                            setNewAge(e.target.value);
+                          }}
+                          value={age}
+                        />
+                      </Form.Item>
+                    </Col>
 
-              {/* Social Accounts */}
-              {selectedMenu === "socialAccounts" && (
-                <Col {...DISPLAY_SIZES}>
-                  {" "}
-                  <SocialAccounts />
-                </Col>
-              )}
-              {!(selectedMenu === "reviews") && (
-                <>
+                    <Col {...DISPLAY_SIZES}>
+                      <Form.Item label="Gender">
+                        <Select
+                          placeholder="select your gender"
+                          value={gender}
+                          onChange={(gender) => {
+                            setNewGender(gender);
+                          }}
+                        >
+                          <Option value="male">Male</Option>
+                          <Option value="female">Female</Option>
+                          <Option value="other">Other</Option>
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                  </div>
+                )}
+                {selectedMenu === "contact" && (
+                  <div>
+                    <Col {...DISPLAY_SIZES}>
+                      <Form.Item label="Mobile">
+                        <Input
+                          style={{ borderRadius: "0px" }}
+                          onChange={(e) => {
+                            setNewMoNumber(e.target.value);
+                          }}
+                          value={moNumber}
+                        />
+                      </Form.Item>
+                    </Col>
+                    <Col {...DISPLAY_SIZES}>
+                      <Form.Item label="WhatsApp">
+                        <Input
+                          style={{ borderRadius: "0px" }}
+                          value={whatsAppNumber}
+                          onChange={(e) => {
+                            setNewWhatsAppNumber(e.target.value);
+                          }}
+                        />
+                      </Form.Item>
+                    </Col>
+
+                    <Col {...DISPLAY_SIZES}>
+                      <Form.Item label="email">
+                        <Input
+                          style={{ borderRadius: "0px" }}
+                          value={email}
+                          disabled
+                        />
+                      </Form.Item>
+                    </Col>
+                  </div>
+                )}
+
+                {/* Reviews */}
+                {selectedMenu === "reviews" && (
                   <Col {...DISPLAY_SIZES}>
-                    <Form.Item style={{ margin: "40px 0px" }}>
-                      <Button block type="primary">
-                        Save changes
-                      </Button>
-                    </Form.Item>
+                    {" "}
+                    <Reviews coachId={userId.current} />
                   </Col>
-                </>
-              )}
-            </Space>
-          </Form>
-        </div>
-      </Space>
+                )}
+
+                {/* Social Accounts */}
+                {selectedMenu === "socialAccounts" && (
+                  <Col {...DISPLAY_SIZES}>
+                    {" "}
+                    <SocialAccounts
+                      fb={fb}
+                      setFb={setNewFb}
+                      insta={insta}
+                      setInsta={setNewInsta}
+                      tiktok={tiktok}
+                      setTiktok={setNewTiktok}
+                    />
+                  </Col>
+                )}
+                {!(selectedMenu === "reviews") && (
+                  <>
+                    <Col {...DISPLAY_SIZES}>
+                      <Form.Item>
+                        <button
+                          className="coach-details-update-btn"
+                          onClick={updateDetails}
+                        >
+                          Save Changes
+                        </button>
+                        <button className="coach-details-cancell-btn">
+                          Cancell
+                        </button>
+                      </Form.Item>
+                    </Col>
+                  </>
+                )}
+              </Space>
+            </Form>
+          </div>
+        </Space>
+      </Spin>
     </div>
   );
 };

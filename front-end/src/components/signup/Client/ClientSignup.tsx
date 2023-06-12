@@ -16,10 +16,6 @@ const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
   const [fName, setFname] = useState<string>("");
   const [lName, setLname] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [moNo, setMoNo] = useState<string>("");
-  const [gender, setGender] = useState<string>("");
 
   const onFinishFailed = () => {
     message.error("Submit failed!");
@@ -51,11 +47,12 @@ const App: React.FC = () => {
       style={{ maxWidth: "none", maxHeight: "none" }}
       open={isModalOpen}
       onOk={handleOk}
-      okText="Sign Up"
-      // okType="danger"
+      okText={<span style={{ color: "white" }}>Sign Up</span>}
       // okButtonProps={{
-      //   style: { border: "1px solid blue", color: "blue" },
+      //   style: {  },
       // }}
+      cancelButtonProps={{ style: { border: "1px solid #e5383b" } }}
+      cancelText={<span style={{ color: "red" }}>Cancell</span>}
       onCancel={handleCancel}
     >
       <Form
@@ -79,6 +76,7 @@ const App: React.FC = () => {
           ]}
         >
           <Input
+            style={{ borderRadius: "0px" }}
             placeholder="First Name"
             onChange={(e) => setFname(e.target.value)}
             value={fName}
@@ -98,6 +96,7 @@ const App: React.FC = () => {
         >
           {/* */}
           <Input
+            style={{ borderRadius: "0px" }}
             placeholder="Last Name"
             onChange={(e) => setLname(e.target.value)}
             value={lName}
@@ -121,7 +120,10 @@ const App: React.FC = () => {
           ]}
           hasFeedback
         >
-          <Input.Password placeholder="Password" />
+          <Input.Password
+            style={{ borderRadius: "0px" }}
+            placeholder="Password"
+          />
         </Form.Item>
 
         <Form.Item
@@ -146,7 +148,10 @@ const App: React.FC = () => {
             }),
           ]}
         >
-          <Input.Password placeholder="Confirm Password" />
+          <Input.Password
+            style={{ borderRadius: "0px" }}
+            placeholder="Confirm Password"
+          />
         </Form.Item>
         <Form.Item
           name="Email"
@@ -156,8 +161,7 @@ const App: React.FC = () => {
             { type: "email", message: "Please input a valid email!" },
           ]}
         >
-          {/* onChange={(e) => setEmail(e.target.value)} value={email}  */}
-          <Input placeholder="Emaill" />
+          <Input placeholder="Emaill" style={{ borderRadius: "0px" }} />
         </Form.Item>
 
         <Form.Item
@@ -171,7 +175,7 @@ const App: React.FC = () => {
             },
           ]}
         >
-          <Input placeholder="Mobile Number" />
+          <Input style={{ borderRadius: "0px" }} placeholder="Mobile Number" />
         </Form.Item>
         <Form.Item
           label="Gender"
@@ -179,7 +183,10 @@ const App: React.FC = () => {
           name="Gender"
           rules={[{ required: true, message: "Please select gender!" }]}
         >
-          <Select className="inputs" placeholder="select your gender">
+          <Select
+            style={{ borderRadius: "0px" }}
+            placeholder="select your gender"
+          >
             <Option value="male">Male</Option>
             <Option value="female">Female</Option>
             <Option value="other">Other</Option>

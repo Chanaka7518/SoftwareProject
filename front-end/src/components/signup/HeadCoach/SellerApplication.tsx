@@ -7,6 +7,7 @@ import { useAuthContext } from "../../../Hooks/useAuthContext";
 import TextArea from "antd/es/input/TextArea";
 import { useLogout } from "../../../Hooks/useLogout";
 import { useNavigate } from "react-router";
+import { MinusCircleOutlined } from "@ant-design/icons";
 
 const SellerApplication: React.FC = () => {
   const { logout } = useLogout();
@@ -75,6 +76,7 @@ const SellerApplication: React.FC = () => {
   };
 
   // fetch existing user data
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -341,13 +343,17 @@ const SellerApplication: React.FC = () => {
                     onChange={(event) => handleAchievementsChange(event, index)}
                     key={index}
                   />
-                  <button
+                  <MinusCircleOutlined
                     type="button"
                     onClick={() => handleRemoveAchievements(index)}
-                    style={{ width: "80px", marginLeft: "5px" }}
-                  >
-                    Remove
-                  </button>
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      // marginLeft: "5px",
+                      borderRadius: "50%",
+                      color: "red",
+                    }}
+                  />
                 </div>
               ))}
               <button type="button" onClick={handleAddAchievements}>
@@ -367,13 +373,17 @@ const SellerApplication: React.FC = () => {
                     onChange={(event) => handleExperiencesChange(event, index)}
                     key={index}
                   />
-                  <button
+                  <MinusCircleOutlined
                     type="button"
                     onClick={() => handleRemoveExperiences(index)}
-                    style={{ width: "80px", marginLeft: "5px" }}
-                  >
-                    Remove
-                  </button>
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      // marginLeft: "5px",
+                      borderRadius: "50%",
+                      color: "red",
+                    }}
+                  />
                 </div>
               ))}
               <button type="button" onClick={handleAddExperiences}>
@@ -410,7 +420,8 @@ const SellerApplication: React.FC = () => {
             />
           </Form.Item>
           <Form.Item label="Short Description:" name="Description">
-            <Input
+            <TextArea
+              rows={6}
               className="seller-inputs"
               onChange={(e) => setDes(e.target.value)}
               value={des}
@@ -418,9 +429,18 @@ const SellerApplication: React.FC = () => {
           </Form.Item>
 
           {/* More input fields... */}
-
+          <Form.Item>
+            <button type="submit" className="seller-form-submit">
+              Submit
+            </button>
+            <button
+              className="seller-form-cancell"
+              onClick={() => navigate("/")}
+            >
+              Cancell
+            </button>
+          </Form.Item>
           {/* Submit button */}
-          <button type="submit">Submit</button>
         </Form>
       </div>
     </div>

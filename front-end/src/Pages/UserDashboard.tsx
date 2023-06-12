@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Col, Row, Menu, Drawer } from "antd";
 import { useAuthContext } from "../Hooks/useAuthContext";
 import { useLogout } from "../Hooks/useLogout";
-import { Content, Header } from "antd/es/layout/layout";
+import { Content } from "antd/es/layout/layout";
 
 import { useNavigate } from "react-router-dom";
 import MyClients from "./HeadCoach/MyClients";
@@ -13,6 +13,8 @@ import DashboardContent from "./HeadCoach/DashboardContent";
 import Package from "../components/HeadCoach/Package";
 import Workouts from "../components/HeadCoach/Workouts";
 import UnderReview from "../components/Results/UnderReview";
+
+import WorkoutCreationInterface from "../components/HeadCoach/WorkoutCreationInterface";
 
 const Dashboard = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
@@ -58,7 +60,11 @@ const Dashboard = () => {
                   setSelectedMenu(key);
                 }}
                 items={[
-                  { label: "Dashboard", key: "dashbord" },
+                  {
+                    label: "Dashboard",
+                    key: "dashbord",
+                  },
+                  { label: "Create Plans", key: "createPlans" },
                   { label: "Messages", key: "messages" },
 
                   { label: "My Profile", key: "profile" },
@@ -181,7 +187,7 @@ const Dashboard = () => {
               !userData.isAcceptedSeller &&
               userData.isAppliedAsSeller && <UnderReview />}
 
-            {/*  */}
+            {/* accepted seller */}
             {selectedMenu === "clients" &&
               userRole === "Coach" &&
               userData.isAcceptedSeller && <MyClients />}
@@ -213,10 +219,11 @@ const Dashboard = () => {
                   packageName="personalTraining"
                 />
               )}
-
-            {selectedMenu === "myteam" &&
+            {selectedMenu === "createPlans" &&
               userRole === "Coach" &&
-              userData.isAcceptedSeller && <div>Hi</div>}
+              userData.isAcceptedSeller && <WorkoutCreationInterface />}
+            {/* <CreateWorkoutPlans /> */}
+
             {selectedMenu === "workouts" &&
               userRole === "Coach" &&
               userData.isAcceptedSeller && <Workouts />}
@@ -268,11 +275,77 @@ const MobieMenu: React.FC<Props> = ({
         onClose={toggleDrawer}
       >
         {/* for accepted coaches */}
-        {userRole === "Coach" && userData.isAcceptedSeller && (
+        {/* For accepted coaches */}
+        {userRole === "Coach" &&
+          userData.isAcceptedSeller &&
+          userData.isAppliedAsSeller && (
+            <Menu
+              style={{
+                color: "black",
+              }}
+              theme="light"
+              mode="inline"
+              defaultSelectedKeys={["dashbord"]}
+              onClick={({ key }) => {
+                if (key === "logout") {
+                  logout();
+                }
+                if (key === "profile") {
+                  routeTo("/headcoachprofile");
+                }
+                setSelectedMenu(key);
+              }}
+              items={[
+                { label: "Dashboard", key: "dashbord" },
+                { label: "Create Plans", key: "createPlans" },
+                { label: "Messages", key: "messages" },
+
+                { label: "My Profile", key: "profile" },
+
+                { label: "Log out", key: "logout", danger: true },
+              ]}
+            ></Menu>
+          )}
+
+        {/* for not accepted  and applied  coaches */}
+        {userRole === "Coach" &&
+          !userData.isAcceptedSeller &&
+          userData.isAppliedAsSeller && (
+            <Menu
+              style={{
+                color: "black",
+              }}
+              theme="light"
+              mode="inline"
+              defaultSelectedKeys={["dashbord"]}
+              onClick={({ key }) => {
+                if (key === "logout") {
+                  logout();
+                }
+                if (key === "profile") {
+                  routeTo("/headcoachprofile");
+                }
+                setSelectedMenu(key);
+              }}
+              items={[
+                { label: "Dashboard", key: "dashbord" },
+
+                { label: "My Profile", key: "profile" },
+
+                { label: "Log out", key: "logout", danger: true },
+              ]}
+            ></Menu>
+          )}
+
+        {/* for not  applied  coaches */}
+        {userRole === "Coach" && !userData.isAppliedAsSeller && (
           <Menu
+            style={{
+              color: "black",
+            }}
             theme="light"
             mode="inline"
-            defaultSelectedKeys={["clients"]}
+            defaultSelectedKeys={["profile"]}
             onClick={({ key }) => {
               if (key === "logout") {
                 logout();
@@ -283,33 +356,6 @@ const MobieMenu: React.FC<Props> = ({
               setSelectedMenu(key);
             }}
             items={[
-              { label: "Dashboard", key: "dashbord" },
-              { label: "Messages", key: "messages" },
-
-              { label: "My Profile", key: "profile" },
-
-              { label: "Log out", key: "logout", danger: true },
-            ]}
-          ></Menu>
-        )}
-
-        {/* For not accepted coaches */}
-        {userRole === "Coach" && !userData.isAcceptedSeller && (
-          <Menu
-            theme="light"
-            mode="inline"
-            defaultSelectedKeys={["clients"]}
-            onClick={({ key }) => {
-              if (key === "logout") {
-                logout();
-              }
-              if (key === "profile") {
-                routeTo("/headcoachprofile");
-              }
-              setSelectedMenu(key);
-            }}
-            items={[
-              { label: "Dashboard", key: "dashbord" },
               { label: "My Profile", key: "profile" },
 
               { label: "Log out", key: "logout", danger: true },

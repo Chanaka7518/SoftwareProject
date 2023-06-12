@@ -17,10 +17,10 @@ const GigSchema = new Schema(
     },
     totalRating: {
       type: Number,
-
       default: 0,
     },
     starNumber: {
+      // when create a review increment the starNumebr by star.Then calculate average using both package
       type: Number,
 
       default: 0,
@@ -31,7 +31,7 @@ const GigSchema = new Schema(
     },
     gigPhoto: {
       type: String,
-      required: false,
+      required: true,
     },
     price: {
       platinum: {
@@ -52,10 +52,6 @@ const GigSchema = new Schema(
       },
     },
 
-    features: {
-      type: [String],
-      required: true,
-    },
     totalSales: {
       type: Number,
       default: 0,
