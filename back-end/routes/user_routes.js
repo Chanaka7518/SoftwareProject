@@ -8,5 +8,6 @@ router.get("/coaches", verifyToken, Users.getCoaches);
 router.get("/coach/:id", verifyToken, Users.getCoach);
 
 router.post("/coach/application/:id", verifyToken, Users.fillApplication);
+router.get("/client/details/:userId", verifyToken, Users.getClientDetails);
 
 module.exports = router;
