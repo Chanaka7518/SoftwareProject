@@ -1,4 +1,4 @@
-import { Card, Col, Row, Typography } from "antd";
+import { Card, Col, Row, Typography, message } from "antd";
 import React, { useState, useEffect } from "react";
 import { CaretUpFilled } from "@ant-design/icons";
 import "./Statistics-card.css";
@@ -8,54 +8,11 @@ import Meta from "antd/es/card/Meta";
 import { useNavigate } from "react-router";
 import newRequest from "../../Utils/newRequest";
 import StatisticsCard from "./StatisticsCard";
+import NewOrders from "./NewOrders";
 
 const OCPhoto: string = new URL(`./online-coaching.jpg`, import.meta.url).href;
 const PTPhoto: string = new URL(`./personal-Training.jpg`, import.meta.url)
   .href;
-
-const DISPLAY_SIZES_ROW = {
-  xs: { span: 22, offset: 1 },
-  sm: { span: 16, offset: 4 },
-  md: { span: 12, offset: 6 },
-  lg: { span: 12, offset: 6 },
-  xl: { span: 12, offset: 6 },
-};
-const DISPLAY_SIZES_COL = {
-  xs: { span: 24, offset: 0 },
-  sm: { span: 12, offset: 0 },
-  md: { span: 8, offset: 0 },
-  lg: { span: 5, offset: 0 },
-  xl: { span: 5, offset: 0 },
-};
-
-const DISPLAY_SIZES_ROW_PACKAGE = {
-  xs: { span: 22, offset: 1 },
-  sm: { span: 16, offset: 4 },
-  md: { span: 12, offset: 6 },
-  lg: { span: 24, offset: 0 },
-  xl: { span: 24, offset: 0 },
-};
-const DISPLAY_SIZES_COL_PACKAGE = {
-  xs: { span: 24, offset: 0 },
-  sm: { span: 12, offset: 0 },
-  md: { span: 8, offset: 0 },
-  lg: { span: 10, offset: 1 },
-  xl: { span: 10, offset: 1 },
-};
-
-const DISPLAY_SIZES_COL_DATE_TIME = {
-  xs: { span: 24, offset: 0 },
-  sm: { span: 24, offset: 0 },
-  md: { span: 24, offset: 0 },
-  lg: { span: 23, offset: 0 },
-  xl: { span: 23, offset: 0 },
-};
-
-const gridStyle: React.CSSProperties = {
-  width: "33.3%",
-  textAlign: "left",
-  // borderRight: "1px solid rgba(0,23,f,0.5)",
-};
 
 interface Props {
   setSelectedMenu: (value: string) => void;
@@ -63,31 +20,56 @@ interface Props {
 const DashboardContent: React.FC<Props> = ({ setSelectedMenu }) => {
   const navigateTo = useNavigate();
   const { userData } = useAuthContext();
-  let userId = userData?._id;
 
+  const [userId, setUserId] = useState(userData?._id);
   const [images, setImages] = useState<string[]>([OCPhoto, PTPhoto]);
 
-  const [totalRevenue, setTotalRevenue] = useState<number>(156234);
-  const [totalAlfFee, setTotalAlfFee] = useState<number>(28456);
-  const [withdrawableFee, setWithdrawableFee] = useState<number>(56347);
-  const [totalOrders, setTotalOrders] = useState<number>(47);
-  const [ordersCompleted, setOrdersCompleted] = useState<number>(35);
-  const [ordersInProgress, setOrdersInProgress] = useState<number>(12);
-  const [myTeam, setMyTeam] = useState<number>(12);
+  const [workouts, setWorkouts] = useState<number>(0);
+  const [revenue, setRevenue] = useState<number>(0);
+  const [pendingOrders, setPendingOrders] = useState<string[]>([]);
 
-  const [fName, setFName] = useState<string>(userData.firstName);
-  const [lName, setLName] = useState<string>(userData.lastName);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await newRequest.get(`/users/coach/${userId}`, {});
+        setWorkouts(res.data.totalSales);
+        setRevenue(res.data.revenue);
+        setPendingOrders(res.data.newOrders);
+        console.log(res.data);
+      } catch (err: any) {
+        message.error(err.message);
+      }
+    };
+    fetchData();
+  }, []);
 
+  const [viewOrders, setViewOrders] = useState<boolean>(false);
   return (
     <div>
       <Row>
-        {/* onClick={() => navigateTo("/mysales")} */}
-        <StatisticsCard title="Sales Revenue" value={50000} type="money" />
-        {/* onClick={() => navigateTo("/myclients")} */}
-        <StatisticsCard title="Number of Clients" value={100} type="number" />
-        {/* onClick={() => navigateTo("/workouts")} */}
-        <StatisticsCard title="Number of Workouts" value={500} type="number" />
+        <StatisticsCard
+          setViewOrders={setViewOrders}
+          viewOrders={viewOrders}
+          title="Sales Revenue"
+          value={revenue}
+          type="money"
+        />
+        <StatisticsCard
+          viewOrders={viewOrders}
+          setViewOrders={setViewOrders}
+          title="Number of Sales"
+          value={workouts}
+          type="number"
+        />
+        <StatisticsCard
+          viewOrders={viewOrders}
+          setViewOrders={setViewOrders}
+          title={"To Deliver"}
+          value={pendingOrders.length}
+          type="number"
+        />
       </Row>
+      <Row>{viewOrders && <NewOrders ordersToDeliver={pendingOrders} />}</Row>
       <Row>
         <p
           style={{

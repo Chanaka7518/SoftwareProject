@@ -48,6 +48,7 @@ const Reviews: React.FC<prop> = ({ coachId }) => {
       <Spin spinning={isLoading}>
         {reviews === null && <div>No reviews yet</div>}
         <Card
+          hoverable
           style={{ width: "100%", marginTop: "5px", background: "#e9ecef" }}
         >
           {reviews.map((review, index) => (

@@ -10,10 +10,10 @@ const router = express.Router();
 // router.get("/", verifyToken, Order.getOrders);
 
 // Create an order
-router.post("/:userId",  Order.createOrder);
-router.get("/:userId",  Order.getOrders);
+router.post("/:gigId", verifyToken, Order.createOrder);
+router.get("/:userId", Order.getOrders);
 
-// Get a single order
-router.get("/single/:orderId",  Order.getOrder);
+// Get a single order with details
+router.get("/single/:orderId", Order.getOrder);
 
 module.exports = router;

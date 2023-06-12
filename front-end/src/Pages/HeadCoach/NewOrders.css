@@ -1,0 +1,11 @@
+.order-accept {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+.accept-single-order {
+  width: 80%;
+  padding: 10px;
+  background-color: aquamarine;
+}

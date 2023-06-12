@@ -24,7 +24,7 @@ const SocialAccounts: React.FC<props> = ({
   return (
     <div>
       <Form>
-        <Form.Item>
+        <Form.Item name="fb" initialValue={fb}>
           <div
             style={{
               width: "100%",
@@ -43,8 +43,8 @@ const SocialAccounts: React.FC<props> = ({
           </div>
           <Input
             style={{ borderRadius: "0px" }}
-            value={fb}
             onChange={(e) => setFb(e.target.value)}
+            value={fb}
           />
         </Form.Item>
         <Form.Item>

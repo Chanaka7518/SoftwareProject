@@ -5,12 +5,6 @@ import { message } from "antd";
 import { useNavigate } from "react-router-dom";
 import newRequest from "../Utils/newRequest";
 
-interface SignupResult {
-  signup: (email: string, password: string) => Promise<void>;
-  isLoading: boolean;
-  error: any;
-}
-
 const useSignupClient = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -38,20 +32,16 @@ const useSignupClient = () => {
         gender: gender,
       });
 
-      if (res.data === "New user has been created!") {
-        message.success(res.data);
-        // update the auth context
-        dispatch({ type: "LOGIN", payload: res.data });
+      message.success(res.data);
+      // update the auth context
+      dispatch({ type: "LOGIN", payload: res.data });
+      navigate("/login");
 
-        navigate("/login");
-      } else {
-        message.error(res.data);
-        navigate("/");
-      }
-
+      // console.log(res.data);
       setIsLoading(false);
-    } catch (err: any) {
-      message.error(err.message);
+    } catch (error: any) {
+      console.log(error.message);
+      message.error(error.response.message);
       setIsLoading(false);
       navigate("/");
     }

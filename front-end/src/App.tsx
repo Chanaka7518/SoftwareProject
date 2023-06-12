@@ -18,19 +18,16 @@ import MyTeam from "./components/HeadCoach/MyTeam";
 import ServicesPage from "./Pages/ServicesPage/ServicesPage";
 import ClientGigView from "./Pages/Client Views/ClientGigView";
 
-import Signup from "./components/signup/HeadCoach/Signup";
+import Signup from "./components/signup/HeadCoach/SignUp";
 import UnderReview from "./components/Results/UnderReview";
 import SellerApplication from "./components/signup/HeadCoach/SellerApplication";
 import CreateWorkoutOC from "./components/HeadCoach/CreateWorkoutOC";
 import CreateWorkoutPT from "./components/HeadCoach/CreateWorkoutPT";
 
-// import Test from "./components/signup/HeadCoach/Test";
-// import Signup from "./components/signup/HeadCoach/SignUp";
-// import UnderReview from "./components/Results/UnderReview";
-// import SellerApplication from "./components/signup/HeadCoach/SellerApplication";
 import SellerApplicationView from "./components/Admin/SellerApplicationView";
 import PaymentDetailsModal from "./Pages/Buyservice/PaymentDetailsModal";
 import WorkOutPlan from "./Pages/Client Views/WorkoutPlan";
+import NewOrders from "./Pages/HeadCoach/NewOrders";
 
 const App: React.FC = () => {
   return (
@@ -39,7 +36,6 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomepageBody />} />
           <Route path="/generate" element={<UserDashboard />} />
-          {/* <Route path="/signupCoach/:token" element={<Signup />} /> */}
           <Route path="/signup" element={<ClientSignup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgetpwd" element={<ForgetPwd />} />{" "}

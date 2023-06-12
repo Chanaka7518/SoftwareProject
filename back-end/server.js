@@ -12,6 +12,7 @@ const conversationRoutes = require("./routes/conversation_routes");
 const authRoutes = require("./routes/authentication_routes");
 const emailRoutes = require("./routes/email_routes");
 const approveRoutes = require("./routes/approve_routes");
+const alphaleeRoutes = require("./routes/alphaLee_routes");
 
 const HttpError = require("./models/http-error");
 const cors = require("cors");
@@ -42,6 +43,7 @@ server.use("/api/messages", messageRoutes);
 server.use("/api/emails", emailRoutes);
 server.use("/api/reviews", reviewRoutes);
 server.use("/api/approve", approveRoutes);
+server.use("/api/alphalee", alphaleeRoutes);
 
 server.use((err, req, res, next) => {
   const errStatus = err.status || 500;

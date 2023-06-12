@@ -1,15 +1,15 @@
 .dive-card-stat {
-  width: 49%;
+  width: 44%;
   background-color: #ffffff;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .dive-card-stat:hover {
   transform: scale(0.9);
-  cursor: pointer;
 }
 
 .dive-card-title-stat {
@@ -22,4 +22,7 @@
   color: #333333;
   font-size: 24px;
   font-weight: bold;
+}
+.stat-viiew-btn {
+  cursor: pointer;
 }

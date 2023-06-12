@@ -22,7 +22,6 @@ const App: React.FC = () => {
   };
 
   const onFinish = async (values: any) => {
-    console.log(values);
     let fName = values.First_Name;
     let lName = values.Last_Name;
     let password = values.Confirm_Password;
