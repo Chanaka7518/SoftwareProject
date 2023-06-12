@@ -106,7 +106,6 @@ const registerCoach = async (req, res, next) => {
     if (user) return next(createError(409, "User already exists"));
 
     const hashedPassword = bcrypt.hashSync(password, 12);
-
     const newUser = new Coach({
       ...req.body,
       password: hashedPassword,

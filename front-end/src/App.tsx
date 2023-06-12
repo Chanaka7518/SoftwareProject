@@ -13,7 +13,6 @@ import { Coaching } from "./components/Coaching";
 import Color from "./Color";
 import ClientList from "./components/HeadCoach/ClientList";
 import MySales from "./components/HeadCoach/MySales";
-
 import SalesList from "./components/HeadCoach/SalesList";
 import MyTeam from "./components/HeadCoach/MyTeam";
 import ServicesPage from "./Pages/ServicesPage/ServicesPage";
@@ -25,6 +24,14 @@ import SellerApplication from "./components/signup/HeadCoach/SellerApplication";
 import CreateWorkoutOC from "./components/HeadCoach/CreateWorkoutOC";
 import CreateWorkoutPT from "./components/HeadCoach/CreateWorkoutPT";
 
+// import Test from "./components/signup/HeadCoach/Test";
+// import Signup from "./components/signup/HeadCoach/SignUp";
+// import UnderReview from "./components/Results/UnderReview";
+// import SellerApplication from "./components/signup/HeadCoach/SellerApplication";
+import SellerApplicationView from "./components/Admin/SellerApplicationView";
+import PaymentDetailsModal from "./Pages/Buyservice/PaymentDetailsModal";
+import WorkOutPlan from "./Pages/Client Views/WorkoutPlan";
+
 const App: React.FC = () => {
   return (
     <div className="App">
@@ -32,7 +39,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomepageBody />} />
           <Route path="/generate" element={<UserDashboard />} />
-          <Route path="/signupCoach/:token" element={<Signup />} />
+          {/* <Route path="/signupCoach/:token" element={<Signup />} /> */}
           <Route path="/signup" element={<ClientSignup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgetpwd" element={<ForgetPwd />} />{" "}
@@ -72,7 +79,8 @@ const App: React.FC = () => {
           <Route path="/myteam" element={<MyTeam />} />
           {/* test */}
           <Route path="/test" element={<UnderReview />} />
-          <Route path="/test1" element={<SellerApplication />} />
+          <Route path="/test1" element={<SellerApplicationView />} />
+          <Route path="/dashboard/workoutplan" element={<WorkOutPlan />} />
         </Routes>
       </div>
     </div>

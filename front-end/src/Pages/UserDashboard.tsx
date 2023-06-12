@@ -13,6 +13,7 @@ import DashboardContent from "./HeadCoach/DashboardContent";
 import Package from "../components/HeadCoach/Package";
 import Workouts from "../components/HeadCoach/Workouts";
 import UnderReview from "../components/Results/UnderReview";
+import MyWorkOutsClient from "./Client Views/MyWorkOutsClient";
 
 import WorkoutCreationInterface from "../components/HeadCoach/WorkoutCreationInterface";
 
@@ -228,7 +229,31 @@ const Dashboard = () => {
               userRole === "Coach" &&
               userData.isAcceptedSeller && <Workouts />}
 
+
+
+
             {/* for clients */}
+            {/* {selectedMenu === "workouts" && userRole === "Client" && (
+
+          
+             <MyWorkOutsClient setSelectedMenu={setSelectedMenu}/>
+)} */}
+           
+           {selectedMenu === "workouts" && userRole === "Client" && (
+
+          
+<div> <MyWorkOutsClient/></div>
+)}
+
+
+
+
+
+
+
+
+
+
 
             {/* common */}
             {selectedMenu === "messages" && <div>Messages</div>}

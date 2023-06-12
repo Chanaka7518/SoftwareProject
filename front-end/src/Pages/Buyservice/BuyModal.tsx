@@ -2,8 +2,9 @@ import { Form, Input, Modal, Select } from "antd";
 import React, { useState, useEffect } from "react";
 import { Option } from "antd/es/mentions";
 import "./Styles.css";
+import PaymentDetailsModal from "./PaymentDetailsModal";
 
-interface price {
+interface Price {
   onlineCoaching: {
     platinum: number;
     gold: number;
@@ -17,17 +18,17 @@ interface price {
     bronze: number;
   };
 }
-interface data {
+interface Data {
   gigId: string;
   gigTitle: string;
   sellerId: string;
   sellerName: string;
   category: string;
   isOpen: boolean;
-  price: price;
+  price: Price;
   setIsOpen: (value: boolean) => void;
 }
-const BuyModal: React.FC<data> = ({
+const BuyModal: React.FC<Data> = ({
   setIsOpen,
   sellerName,
   category,
@@ -66,55 +67,69 @@ const BuyModal: React.FC<data> = ({
     }
   }, [pkg, category, price]);
 
-  console.log(sellingPrice);
-  return (
-    <Modal
-      className="buy-modal"
-      open={isOpen}
-      title={null}
-      footer={null}
-      cancelButtonProps={{ style: { display: "none" } }}
-    >
-      <div className="buy-service-page">
-        <div className="buying-details">
-          <Form layout="vertical">
-            <Form.Item style={{ fontWeight: "bold" }} label="Service">
-              <p style={{ fontWeight: "normal", margin: "0px" }}>{category}</p>
-            </Form.Item>
+  const [open, setOpen] = useState<boolean>(false);
 
-            <Form.Item style={{ fontWeight: "bold" }} label="Package">
-              <Select
-                onChange={handlePackageChange}
-                placeholder="Choose a package"
-              >
-                <Option value="Platinum Package">Platinum Package</Option>
-                <Option value="Gold Package">Gold Package</Option>
-                <Option value="Silver Package">Silver Package</Option>
-                <Option value="Bronze Package">Bronze Package</Option>
-              </Select>
-            </Form.Item>
-            <Form.Item style={{ fontWeight: "bold" }} label="Seller">
-              <Input value={sellerName} disabled />
-            </Form.Item>
-          </Form>
-          <Form.Item style={{ fontWeight: "bold" }} label="Price">
-            <span style={{ color: "gray", fontSize: "25px" }}>
-              LKR {sellingPrice}
-            </span>
-          </Form.Item>
-          <Form.Item className="buy-btn-container">
-            <button className="pay-now-btn pay">Pay Now</button>
-            <button
-              className="pay-now-btn cancell"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              Cancell
-            </button>
-          </Form.Item>
-        </div>
-      </div>
-    </Modal>
-  );
+  const handlePaymentDetailsModal = () => {
+    setOpen(true);
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <PaymentDetailsModal
+        open={open}
+        setOpen={setOpen}
+        sellingPrice={sellingPrice}
+      />
+      <Modal
+        visible={isOpen}
+        title={null}
+        footer={null}
+        onCancel={() => setIsOpen(false)}
+      >
+        <div className="buy-service-page">
+          <div className="buying-details">
+            <Form layout="vertical">
+              <Form.Item style={{ fontWeight: "bold" }} label="Service">
+                <p style={{ fontWeight: "normal", margin: "0px" }}>
+                  {category}
+                </p>
+              </Form.Item>
+
+              <Form.Item style={{ fontWeight: "bold" }} label="Package">
+                <Select
+                  onChange={handlePackageChange}
+                  placeholder="Choose a package"
+                >
+                  <Option value="Platinum Package">Platinum Package</Option>
+                  <Option value="Gold Package">Gold Package</Option>
+                  <Option value="Silver Package">Silver Package</Option>
+                  <Option value="Bronze Package">Bronze Package</Option>
+</Select>
+</Form.Item>
+<Form.Item style={{ fontWeight: "bold" }} label="Seller">
+<Input value={sellerName} disabled />
+</Form.Item>
+</Form>
+<Form.Item style={{ fontWeight: "bold" }} label="Price">
+<span style={{ color: "gray", fontSize: "25px" }}>
+LKR {sellingPrice}
+</span>
+</Form.Item>
+<Form.Item className="buy-btn-container">
+<button className="pay-now-btn pay" onClick={handlePaymentDetailsModal}>Pay Now</button>
+<button
+className="pay-now-btn cancell"
+onClick={() => setIsOpen(false)}
+>
+Cancel
+</button>
+</Form.Item>
+</div>
+</div>
+</Modal>
+</>
+);
 };
 
 export default BuyModal;

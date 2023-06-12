@@ -28,7 +28,6 @@ const deleteUser = async (req, res, next) => {
   }
 
   // if not verified, this return error and if verified it return payload
-
   if (user === null || req.userId !== user._id.toString()) {
     return next(createError(403, "You can delete only your account!"));
   }

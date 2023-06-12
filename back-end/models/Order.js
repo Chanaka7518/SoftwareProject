@@ -1,4 +1,5 @@
-const { Schema } = mongoose;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema(
   {
@@ -8,7 +9,7 @@ const OrderSchema = new Schema(
     },
     image: {
       type: String,
-      required: flase,
+      required: false,
     },
 
     title: {
@@ -27,6 +28,11 @@ const OrderSchema = new Schema(
       type: String,
       required: true,
     },
+    package:{
+      type:String,
+      enum: ["platinum", "gold", "silver","bronze"],
+      required:true,
+    },
     IsCompleted: {
       type: Boolean,
       default: false,
@@ -41,4 +47,5 @@ const OrderSchema = new Schema(
   }
 );
 
-export default mongoose.modal("Order", OrderSchema);
+
+module.exports = mongoose.model("Order", OrderSchema);
