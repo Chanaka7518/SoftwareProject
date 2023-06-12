@@ -19,7 +19,7 @@ import MyTeam from "./components/HeadCoach/MyTeam";
 import ServicesPage from "./Pages/ServicesPage/ServicesPage";
 import ClientGigView from "./Pages/Client Views/ClientGigView";
 
-import Signup from "./components/signup/HeadCoach/SignUp";
+import Signup from "./components/signup/HeadCoach/Signup";
 import UnderReview from "./components/Results/UnderReview";
 import SellerApplication from "./components/signup/HeadCoach/SellerApplication";
 import CreateWorkoutOC from "./components/HeadCoach/CreateWorkoutOC";
