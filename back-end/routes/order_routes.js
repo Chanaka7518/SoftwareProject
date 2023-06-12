@@ -16,4 +16,7 @@ router.get("/:userId", Order.getOrders);
 // Get a single order with details
 router.get("/single/:orderId", Order.getOrder);
 
+//update the deliver state
+router.post("/update/:orderId", verifyToken, Order.updateOrder);
+
 module.exports = router;

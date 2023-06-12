@@ -61,8 +61,10 @@ const getOrder = async (req, res, next) => {
       buyerName: client.firstName,
       buyerEmail: client.email,
       sellerEmail: coach.email,
+      sellerId: order.sellerId,
       sellerName: coach.firstName,
       price: order.Price,
+      isDeliveredToClient: order.isDeliveredToClient,
     };
 
     res.status(200).send(orderDetails);
@@ -81,6 +83,24 @@ const getOrders = async (req, res, next) => {
   }
 };
 
+const updateOrder = async (req, res, next) => {
+  const { sellerId, workoutLink } = req.body;
+  try {
+    await Order.findByIdAndUpdate(req.params.orderId, {
+      isDeliveredToClient: true,
+      workoutLink: workoutLink,
+    });
+
+    await Coach.findByIdAndUpdate(sellerId, {
+      $pull: { newOrders: req.params.orderId },
+    });
+    res.send("Order has delivered successfully");
+  } catch (error) {
+    next(err);
+  }
+};
+
 exports.getOrder = getOrder;
 exports.getOrders = getOrders;
 exports.createOrder = createOrder;
+exports.updateOrder = updateOrder;

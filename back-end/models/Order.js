@@ -28,14 +28,21 @@ const OrderSchema = new Schema(
       type: String,
       required: true,
     },
-    package:{
-      type:String,
-      enum: ["platinum", "gold", "silver","bronze"],
-      required:true,
+    package: {
+      type: String,
+      enum: ["platinum", "gold", "silver", "bronze"],
+      required: true,
     },
     IsCompleted: {
       type: Boolean,
       default: false,
+    },
+    IsWorkoutDeliveredToClient: {
+      type: Boolean,
+      default: false,
+    },
+    workoutLink: {
+      type: String,
     },
     payment_intent: {
       type: String,
@@ -46,6 +53,5 @@ const OrderSchema = new Schema(
     timestamps: true,
   }
 );
-
 
 module.exports = mongoose.model("Order", OrderSchema);
