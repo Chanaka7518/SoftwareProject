@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Carousel } from "antd";
+import React from "react";
+
 import "./HomepageBody.css";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";

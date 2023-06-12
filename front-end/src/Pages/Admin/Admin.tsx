@@ -12,6 +12,7 @@ import { Layout, Menu, Popover, Space } from "antd";
 import Generate from "../../components/signup/Generate";
 import Login from "../../components/login/Login";
 import CoachList from "./CoachList";
+import DisplayApplication from "../../components/Admin/DisplayApplication";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -22,7 +23,7 @@ const Admin: React.FC = () => {
   const [selectedMenu, setSelectedMenu] = useState<string>("dashboard");
 
   const { userData } = useAuthContext();
-  const userRole = userData?.userRole;
+  const userRole = userData?.role;
 
   const { logout } = useLogout();
   const handleClick = () => {
@@ -77,7 +78,7 @@ const Admin: React.FC = () => {
               {" "}
               <Menu.Item
                 style={{ fontSize: "20px" }}
-                key="dashboard"
+                key="dashbord"
                 icon={<DashboardOutlined style={{ fontSize: "20px" }} />}
               >
                 Dashboard
@@ -91,10 +92,17 @@ const Admin: React.FC = () => {
               </Menu.Item>
               <Menu.Item
                 style={{ fontSize: "20px" }}
-                key="generateLink"
+                key="add a coach"
                 icon={<UserAddOutlined style={{ fontSize: "20px" }} />}
               >
                 Add a Coach
+              </Menu.Item>
+              <Menu.Item
+                style={{ fontSize: "20px" }}
+                key="seller applications"
+                icon={<UserAddOutlined style={{ fontSize: "20px" }} />}
+              >
+                Applications
               </Menu.Item>
               <Menu.Item
                 onClick={handleClick}
@@ -170,6 +178,8 @@ const Admin: React.FC = () => {
           {/* {selectedMenu === "generateLink" && <Generate />} */}
           {selectedMenu === "coachList" && <CoachList />}
           {selectedMenu === "dashbord" && <div>dashbord</div>}
+          {selectedMenu === "add a coach" && <CoachList />}
+          {selectedMenu === "seller applications" && <DisplayApplication />}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Alpha Lee ©2023 All Right Reserved

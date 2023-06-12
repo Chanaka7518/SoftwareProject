@@ -1,9 +1,340 @@
-/* ##########################################################Overview section################################################################## */
-
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%MY Styles%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend&family=Michroma&family=Poppins:ital,wght@0,200;0,400;0,600;1,500&display=swap');
 
+.coachingCard:hover{
+    cursor: pointer;
+    color: rgb(37, 35, 35);
+  
+  }
+  .coachingCard{
+    position: relative;
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow: hidden;
+    background: rgb(208, 208, 208);
+  }
+  .perDes{
+    font-size: 20px;
+    font-family: "poppins";
+    margin: 20px;
+   
+  }
+  .list{
+    font-size: 30px;
+  }
+  .list-item-meta-title,
+  .list-item-meta-description,
+  .list-item-link {
+    font-size: 30px;
+  }
+  .ant-card-bordered {
+    border: 2px solid  rgb(214, 214, 214);;
+    position: relative;
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow: hidden;
+    background: rgb(226, 226, 226); /* add color border */
+  }
+  
+  .ant-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* add hover shadow effect */
+    transform: scale(1.1); /* zoom effect on hover */
+    transition: all 0.3s ease-in-out; /* smooth transition */
+    background-color: #d5d5d5; /* Change the background color on hover */
+  cursor: pointer; /* Show a pointer cursor on hover */
+   /* Add a slight vertical translation on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a box shadow on hover */
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Add a smooth transition effect */
+    
+  }
+  .packageCards{
+    margin: 100px;
+  }
+  .requrementForm{
+    margin-top: 80px;
+  }
+  .form{
+    font-size: 40px;
+  }
+  .submit{
+    margin-top: 100px;
+  }
+  .formletters{
+   margin-left: 150px;
+  }
+  .subbutton{
+    margin-left: 200px;
+  }
+  .slideShowCoachList{
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .selectCoach{
+    margin-top: 40px;
+  }
+  .intro-text{
+    font-size: 30px;
+    font-family: "poppins";
+  }
+  .intro-paragraph {
+    margin-bottom: 1rem; /* add 1 rem of space between the intro-paragraph and main-paragraph */
+    font-size: 20px;
+    font-family: "poppins";
+    margin: 40px;
+    
+  }
+.home-page{
+    margin-bottom: 90px;
+}
 
+
+
+
+  /* Head Coach Dash Board */
+ 
+.revenue {
+    text-align: left;
+    font-family:'Poppins' ;
+    font-size: 30px;
+    font-weight: 600;
+    
+    
+
+}
+.TotalRevenue {
+    text-align: left;
+    font-family:'Poppins' ;
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: -60px;
+
+}
+.date{
+    text-align: left;
+    font-family:'Poppins' ;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: -40px;
+    margin-left: 10px;
+}
+.big-black-button {
+    font-size: 20px;
+    padding: 10px 20px;
+    color: white;
+    background-color: black;
+    display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  background: linear-gradient(to right, rgb(100, 99, 99), rgb(81, 80, 80) 20%, rgb(84, 84, 84));
+
+  }
+  .search{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 50px 20px;
+    color: 'black';
+
+  }
+  .actions{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width:15%;
+    padding: 50px 20px;
+    color: 'black';
+    margin-right: -60px;
+  }
+  .btn-next-container {
+    text-align: center;
+    
+    
+  }
+  .createPlanButton{
+    font-size: 20px;
+    padding: 15px 20px;
+    color: white;
+    background-color: black;
+    display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  background: linear-gradient(to right,  rgb(100, 99, 99), rgb(81, 80, 80) 20%, rgb(84, 84, 84));
+
+  }
+  .createPlanButton:hover {
+    cursor: pointer;
+  }
+  .big-black-button:hover {
+    cursor: pointer;
+  }
+  .dropdown{
+    
+      opacity: 0.5;
+   
+
+  }
+  .notification{
+     margin-left: 350px;
+     margin-top: 60px;
+     
+
+  }
+ .notifi{
+  margin-left: 820px;
+     margin-top: -150px;
+     
+
+ }
+
+ .menu{
+  margin-left: 620px;
+ }
+ .title{
+  text-align: center;
+  background-color: #ebebeb;
+  padding: 20px;
+  font-family:'Poppins' ;
+  font-size: 40px;
+  font-weight: 600;
+  
+ }
+ .AVATAR{
+  margin-top: 60px;
+ }
+ .Details{
+  margin-top: 150px;
+ }
+ .title .h1tag{
+  margin: 20px;
+
+ }
+
+
+ /* Online Coaching */
+ .packageards{
+    margin-top: 50px;
+ }
+ .packageards {
+  margin: 20px 0;
+}
+.ant-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -16px;
+  margin-left: -16px;
+}
+.ant-col {
+  flex: 1;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+
+ /* div {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  } */
+  
+  /* h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+   */
+  /* ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  li {
+    font-size: 18px;
+    margin-bottom: 10px;
+  } */
+  .buttonLetsGetStart {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    height: 60px;
+    background-color: #1fa0fc;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto 0;
+    transition: background-color 0.2s;
+    margin-bottom: 40px;
+  }
+  
+  button:hover {
+    background-color: #005ea6;
+  }
+  a {
+    text-decoration: none;
+  }
+
+  /* Coach List */
+  .SelectingCoach{
+    margin-top: 100px;
+  }
+
+  /* Online Coaching */
+  h2.Instructions{
+    margin-left: -100px;
+  }
+  .workout-plan-container {
+    border: 3px solid #c7c4c4;
+    padding: 20px;
+    margin: 20px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ##########################################################Overview section################################################################## */
 .client-gig-view {
   width: 90%;
   margin: 0 5%;
@@ -261,45 +592,6 @@ h2 {
   font-style: italic;
   text-align: right;
 }
-
-  
-.ant-card:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* add hover shadow effect */
-  transform: scale(1.1); /* zoom effect on hover */
-  transition: all 0.3s ease-in-out; /* smooth transition */
-}
-.ant-card-bordered {
-  border: 2px solid  rgb(160, 160, 160);;
-  position: relative;
-  margin: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 6px;
-  padding: 1rem;
-  overflow: hidden;
-  background: rgb(167, 167, 167); /* add color border */
-}
-.buttonLetsGetStart {
-  display: block;
-  width: 100%;
-  max-width: 300px;
-  height: 60px;
-  background-color: #1fa0fc;
-  color: #fff;
-  font-size: 24px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 20px auto 0;
-  transition: background-color 0.2s;
-  margin-bottom: 40px;
-}
-
-button:hover {
-  background-color: #005ea6;
-}
-.MyWorkouts_h1{
-  font-size: large;
-  font-family: poppins;
-
+.CardDetailsh1{
+  text-align: center;
 }

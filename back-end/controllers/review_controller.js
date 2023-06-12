@@ -1,5 +1,6 @@
 const createError = require("../utils/createError");
 const Review = require("../models/Review");
+const Gig = require("../models/GigData");
 
 //-------------Create Review---------------
 const createReview = async (req, res, next) => {
@@ -8,27 +9,34 @@ const createReview = async (req, res, next) => {
   const newReview = new Review({
     userId: req.userId,
     gigId: req.body.gigId,
-    desc: req.body.desc,
+    des: req.body.des,
     star: req.body.star,
   });
 
   try {
-    const review = Review.findOne({
-      gigId: req.userId,
+    const review = await Review.findOne({
+      gigId: req.body.gigId,
       userId: req.userId,
     });
+    console.log(review);
     if (review)
       return next(
         createError(403, "You have already created a review for this gig")
       );
     const savedReview = await newReview.save();
     res.status(201).send(savedReview);
+    await Gig.findByIdAndUpdate(req.body.gigId, {
+      $inc: { totalRating: req.body.star, starNumber: 1 },
+    });
   } catch (err) {
     next(err);
   }
 };
-const getReviews = (req, res, next) => {
+
+const getReviews = async (req, res, next) => {
   try {
+    const reviews = await Review.find({ gigId: req.body.gigId });
+    res.status(201).send(reviews);
   } catch (err) {
     next(err);
   }

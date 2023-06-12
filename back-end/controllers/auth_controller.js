@@ -42,11 +42,11 @@ const registerUser = async (req, res, next) => {
 // register as a coach
 const registerCoach = async (req, res, next) => {
   const { password, email } = req.body;
+
   let user;
   try {
     user = await Client.findOne({ email: email });
-
-    // if not found, try to find the user in the coaches collection
+    // // if not found, try to find the user in the coaches collection
     if (!user) {
       user = await Coach.findOne({ email: email });
     }
@@ -62,9 +62,11 @@ const registerCoach = async (req, res, next) => {
       ...req.body,
       password: hashedPassword,
       role: "Coach",
+      isAcceptedSeller: false,
+      isAppliedAsSeller: false,
     });
-
     await newUser.save();
+
     res.status(201).send("New user has been created!");
   } catch (err) {
     next(err);

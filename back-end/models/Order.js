@@ -28,6 +28,11 @@ const OrderSchema = new Schema(
       type: String,
       required: true,
     },
+    package:{
+      type:String,
+      enum: ["platinum", "gold", "silver","bronze"],
+      required:true,
+    },
     IsCompleted: {
       type: Boolean,
       default: false,

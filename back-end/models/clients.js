@@ -28,6 +28,9 @@ const clientSchema = new Schema(
       type: String,
       required: true,
     },
+    orders:{
+      type:[String]
+    },
     role: {
       type: String,
       required: true,

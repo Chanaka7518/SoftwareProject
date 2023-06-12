@@ -1,0 +1,31 @@
+.seller_application_container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.seller-form-title {
+  color: red;
+  text-align: center;
+  font-size: 58px;
+}
+
+.seller-form {
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 20px;
+  border: 2px solid red;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.seller-labels {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.seller-inputs {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+}
