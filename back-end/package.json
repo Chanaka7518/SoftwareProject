@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/react-router": "^5.1.20",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -22,6 +23,7 @@
     "mongoose-unique-validator": "^3.1.0",
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.20",
+    "react-highlight-words": "^0.20.0",
     "uuid": "^3.3.3"
   }
 }

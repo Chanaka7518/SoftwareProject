@@ -2,6 +2,7 @@ const Client = require("../models/clients");
 const Admins = require("../models/admin");
 const Coach = require("../models/coaches");
 const createError = require("../utils/createError");
+const { c } = require("tar");
 
 const deleteUser = async (req, res, next) => {
   // try to find the user in the clients collection
@@ -99,7 +100,89 @@ const fillApplication = async (req, res, next) => {
   res.status(200).send("Your application has sent for the review");
 };
 
+//Get Admin
+const getAdmin = async (req, res, next) => {
+  let admin;
+
+  try {
+    admin = await Admins.findById(req.params.id);
+    res.status(200).send(admin);
+  } catch (err) {
+    return next(createError(500, "Internal Server Error!"));
+  }
+};
+
+//Admin profile update
+const editAdminProfile = async(req, res, next) => {
+  const {firstName, lastName} = req.body;
+  try { 
+    const admin = await Admins.findById(req.userId);
+
+    if(!admin) {
+      return next(createError(404, "User not found"));
+    }
+    await Admins.findByIdAndUpdate(req.userId, {
+      firstName: firstName, 
+      lastName: lastName
+    })
+  } catch (err) {
+    return next(err);
+  }
+  
+ };
+
+ //Admin contact update
+const editAdminContact = async(req, res, next) => {
+  const {moNumber} = req.body;
+  try { 
+    const admin = await Admins.findById(req.userId);
+
+    if(!admin) {
+      return next(createError(404, "User not found"));
+    }
+    await Admins.findByIdAndUpdate(req.userId, {
+      moNumber: moNumber
+    })
+  } catch (err) {
+    return next(err);
+  }
+  
+ };
+
+//Admin password update
+const editAdminPassword = async(req, res, next) => {
+  const { oldPassword, newPassword } = req.body;
+  
+  
+  
+  try{
+    const admin = await Admins.findById(req.userId);
+    // Check if the current password is correct
+  const isOldPasswordCorrect = await bcrypt.compare(oldPassword, user.password);
+  if(!admin) {
+    return next(createError(404, "User not found"));
+  }
+  
+
+  if (!isOldPasswordCorrect) {
+    return next(createError(401, "Old password is incorrect."));
+  }
+
+  await Admins.findByIdAndUpdate(req.userId, {
+    password: newPassword 
+  })
+  } catch (err) {
+  return next(err);
+  }
+};
+
+
 exports.deleteUser = deleteUser;
 exports.getCoaches = getCoaches;
 exports.getCoach = getCoach;
+exports.getAdmin = getAdmin;
 exports.fillApplication = fillApplication;
+exports.editAdminProfile = editAdminProfile;
+exports.editAdminContact = editAdminContact;
+exports.editAdminPassword = editAdminPassword;
+

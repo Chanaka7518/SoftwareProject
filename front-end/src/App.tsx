@@ -20,9 +20,15 @@ import ServicesPage from "./Pages/ServicesPage/ServicesPage";
 import ClientGigView from "./Pages/Client Views/ClientGigView";
 
 // import Test from "./components/signup/HeadCoach/Test";
-import Signup from "./components/signup/HeadCoach/SignUp";
+import Signup from "./components/signup/HeadCoach/Signup";
 import UnderReview from "./components/Results/UnderReview";
 import SellerApplication from "./components/signup/HeadCoach/SellerApplication";
+
+import EditAdminProfile from "./Pages/Admin/ProfileSettings/EditAdminProfile";
+import CoachList from "./Pages/Admin/CoachList";
+import DisplayApplication from "./components/Admin/DisplayApplication";
+import ProfileSettings from "./Pages/Admin/AdminProfile/ProfileSettings";
+import AdminCalendar from "./components/Admin/AdminCalender";
 
 const App: React.FC = () => {
   return (
@@ -35,17 +41,18 @@ const App: React.FC = () => {
           <Route path="/signup" element={<ClientSignup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgetpwd" element={<ForgetPwd />} />{" "}
-          <Route
+          <Route 
             path="/newPassword/:id/:token"
             element={<CreateNewPassword />}
           />
           <Route path="/alf-admin" element={<Admin />} />
           <Route path="/headcoachprofile" element={<HeadCoachProfile />} />
-          <Route
-            path="/adminProfile"
-            element={<div>Hi this is admin profile</div>}
-          />
-          <Route
+          <Route path="/editAdminProfile" element={<EditAdminProfile/>}/>
+          <Route path='/coachList' element={<CoachList/>}/>
+          <Route path='/adminProfile' element={<ProfileSettings/>}/>
+          <Route path="/displayApplication" element={<DisplayApplication/>}/>
+          <Route path="/adminCalendar" element={<AdminCalendar/>}/>
+          <Route 
             path="/clientProfile"
             element={<div>Hi this is client profile</div>}
           />

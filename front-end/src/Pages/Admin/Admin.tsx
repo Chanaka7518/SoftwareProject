@@ -3,6 +3,11 @@ import {
   DashboardOutlined,
   PoweroffOutlined,
   UserAddOutlined,
+  MessageOutlined,
+  UserOutlined,
+  TransactionOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined
 } from "@ant-design/icons";
 import { useAuthContext } from "../../Hooks/useAuthContext";
 import { useLogout } from "../../Hooks/useLogout";
@@ -13,7 +18,8 @@ import Generate from "../../components/signup/Generate";
 import Login from "../../components/login/Login";
 import CoachList from "./CoachList";
 import DisplayApplication from "../../components/Admin/DisplayApplication";
-
+import AdminDashboard from "./AdminDashboard";
+import ProfileSettings from "./AdminProfile/ProfileSettings";
 const { Header, Content, Footer, Sider } = Layout;
 
 const img1: string = new URL(`../profile.png`, import.meta.url).href;
@@ -39,20 +45,19 @@ const Admin: React.FC = () => {
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
         // style={{ background: "blue", width: "500px" }}
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
+        collapsible collapsed={collapsed}
       >
         <div
           style={{
             height: 32,
             margin: 16,
-            justifyContent: "center",
             background: "white",
             display: "flex",
             alignItems: "center",
+            justifyContent:'center'
           }}
         >
-          ALPHA LEE
+             ALPHA LEE
         </div>
         <Menu
           onClick={(e) => setSelectedMenu(e.key)}
@@ -60,6 +65,7 @@ const Admin: React.FC = () => {
             background: "white",
             color: "black",
             minHeight: "90vh",
+            
           }}
           theme="dark"
           defaultSelectedKeys={["dashboard"]}
@@ -92,17 +98,24 @@ const Admin: React.FC = () => {
               </Menu.Item>
               <Menu.Item
                 style={{ fontSize: "20px" }}
-                key="add a coach"
-                icon={<UserAddOutlined style={{ fontSize: "20px" }} />}
-              >
-                Add a Coach
-              </Menu.Item>
-              <Menu.Item
-                style={{ fontSize: "20px" }}
                 key="seller applications"
                 icon={<UserAddOutlined style={{ fontSize: "20px" }} />}
               >
                 Applications
+              </Menu.Item>
+              <Menu.Item
+                style={{ fontSize: "20px" }}
+                key="chat"
+                icon={<MessageOutlined style={{ fontSize: "20px" }} />}
+              >
+                Chat
+              </Menu.Item>
+              <Menu.Item
+                style={{ fontSize: "20px" }}
+                key="profileSettings"
+                icon={<UserOutlined style={{ fontSize: "20px" }} />}
+              >
+                Profile 
               </Menu.Item>
               <Menu.Item
                 onClick={handleClick}
@@ -121,12 +134,17 @@ const Admin: React.FC = () => {
         <Header
           style={{
             padding: "0 50px",
-
             display: "flex",
             justifyContent: "flex-end",
             alignItems: "center",
           }}
         >
+          <div
+          style={{position:'absolute', left:200, justifyContent:'left', color:'white', alignContent:'center'}}>
+          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            onClick: () => setCollapsed(!collapsed),
+          })}
+          </div>
           {/* <span>{userData.email}</span> */}
 
           {userData && (
@@ -134,16 +152,14 @@ const Admin: React.FC = () => {
               <Popover
                 content={
                   <div>
-                    <Link to="/adminProfile">Profile</Link>
+                   <Link to="/headcoachprofile">Profile</Link>
 
                     <br />
-                    <a onClick={handleClick} style={{ color: "red" }}>
-                      Log out
-                    </a>
+                    <a onClick={handleClick}>Log out</a>
                     <br />
-                    {/* <a style={{ color: "red" }} onClick={handlePopOver}>
+                    <a style={{ color: "red" }} onClick={handlePopOver}>
                       Close
-                    </a> */}
+                    </a>
                   </div>
                 }
                 title={userData.email}
@@ -177,9 +193,9 @@ const Admin: React.FC = () => {
         >
           {/* {selectedMenu === "generateLink" && <Generate />} */}
           {selectedMenu === "coachList" && <CoachList />}
-          {selectedMenu === "dashbord" && <div>dashbord</div>}
-          {selectedMenu === "add a coach" && <CoachList />}
+          {selectedMenu === "dashbord" && <AdminDashboard/>}
           {selectedMenu === "seller applications" && <DisplayApplication />}
+          {selectedMenu === "profileSettings" && <ProfileSettings />}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Alpha Lee ©2023 All Right Reserved
