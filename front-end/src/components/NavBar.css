@@ -32,7 +32,7 @@ nav {
   transition: all 0.3s;
 }
 .buttonContainers {
-  width: 200px;
+  width: 250px;
 }
 /* login&signup */
 .open-buttons {
@@ -43,7 +43,7 @@ nav {
   border-radius: 20px;
   padding: 10px 20px;
   font-size: 20px;
-
+  margin-right: 10px;
   cursor: pointer;
   transition: all 0.3s;
 }

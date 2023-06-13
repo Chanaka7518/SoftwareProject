@@ -8,5 +8,5 @@ router.delete("/:id", verifyToken, Gig.deleteGig);
 router.get("/single/:id", verifyToken, Gig.getGig);
 router.post("/single/update/:gigId", verifyToken, Gig.updateGig);
 router.get("/single/coach/:userId", verifyToken, Gig.getGigByUserId);
-router.get("/", verifyToken, Gig.getGigs);
+router.get("/", Gig.getGigs);
 module.exports = router;

@@ -82,7 +82,7 @@ const HorizontalScrollBar: React.FC = () => {
               gigId={item.gigId}
               gigPhoto={item.gigPhoto}
               gigTitle={item.gigTitle}
-              sellerName={item.sellerName}
+              sellerId={item.sellerName}
               rating={item.rating}
               totalSales={item.totalSales}
             />

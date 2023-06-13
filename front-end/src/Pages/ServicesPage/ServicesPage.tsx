@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GigCard from "./GigCard";
 import "./Styles.css";
 import NavBar from "../../components/NavBar";
-import { Menu } from "antd";
+import { Menu, message } from "antd";
 import HorizontalScrollBar from "../../components/HorizontalScrollBar";
 import Footer from "../../components/Footer";
+import newRequest from "../../Utils/newRequest";
 
 const sample1OC: string = new URL(
   `../../Assets/sample Gig Photos/sample1-oc.png`,
@@ -14,9 +15,38 @@ const sample1PT: string = new URL(
   `../../Assets/sample Gig Photos/sample1-pt.png`,
   import.meta.url
 ).href;
-
+interface gigs {
+  id: string;
+  Title: string;
+  category: string;
+  des: string;
+  gigPhoto: string;
+  ongoingOrders: number;
+  price: { platinum: number; gold: number; silver: number; bronze: number };
+  sellerId: string;
+  starNumber: number;
+  totalRating: number;
+  totalSales: number;
+}
 const ServicesPage: React.FC = () => {
-  const [key, setKey] = useState<string>("oc");
+  const [gigs, setGigs] = useState<gigs[]>();
+  const [key, setKey] = useState<string>("Online Coaching");
+  useEffect(() => {
+    const fetchGig = async () => {
+      try {
+        const res = await newRequest.get("/gigs", {
+          params: {
+            category: key,
+          },
+        });
+        setGigs(res.data);
+        console.log(gigs);
+      } catch (error: any) {
+        message.error(error.message);
+      }
+    };
+    fetchGig();
+  }, [key]);
 
   return (
     <div>
@@ -24,21 +54,18 @@ const ServicesPage: React.FC = () => {
 
       <div className="gig-page">
         <h1 className="page-title">Find Your Perfect Online Gym Service</h1>
-        <h2 className="best-coaches">Best Coaches</h2>
-        <div className="best-coaches-scrollcontent">
-          <HorizontalScrollBar />
-        </div>
+
         <Menu
           className="services-menu"
-          defaultSelectedKeys={["oc"]}
+          defaultSelectedKeys={["Online Coaching"]}
           mode="horizontal"
           items={[
             {
-              key: "oc",
+              key: "Online Coaching",
               label: "Online Coaching",
             },
             {
-              key: "pt",
+              key: "Personal Training",
 
               label: "Personal Training",
             },
@@ -48,46 +75,47 @@ const ServicesPage: React.FC = () => {
             setKey(key);
           }}
         />
-        {key == "oc" && (
+        {key == "Online Coaching" && (
           <>
             <div className="gig-section">
               <h2 className="section-title">Online Coaching</h2>
 
               {/* ***********************add 1640 * 924 size images*********************************************/}
-              <div className="online-coaching-gigs">
-                {" "}
-                <GigCard
-                  gigId="gig1"
-                  gigPhoto={sample1OC}
-                  gigTitle="Personalized Online Coaching"
-                  sellerName="John Doe"
-                  rating={4.9}
-                  totalSales={100}
-                />
-                <GigCard
-                  gigId="gig2"
-                  gigPhoto={sample1OC}
-                  gigTitle="Personalized Online Coaching"
-                  sellerName="John Doe"
-                  rating={4.9}
-                  totalSales={100}
-                />
-              </div>
+              {gigs &&
+                gigs.map((gig, index) => (
+                  <div className="online-coaching-gigs">
+                    {" "}
+                    <GigCard
+                      gigId={gig.id}
+                      gigPhoto={gig.gigPhoto}
+                      gigTitle={gig.Title}
+                      sellerId={gig.id}
+                      rating={gig.starNumber}
+                      totalSales={gig.totalSales}
+                    />{" "}
+                  </div>
+                ))}
             </div>
           </>
         )}
-        {key == "pt" && (
+        {key == "Personal Training" && (
           <>
             <div className="gig-section">
               <h2 className="section-title">Personal Training</h2>
-              <GigCard
-                gigId="gig3"
-                gigPhoto={sample1PT}
-                gigTitle="1-on-1 Personal Training Sessions"
-                sellerName="Jane Smith"
-                rating={5.0}
-                totalSales={50}
-              />
+              {gigs &&
+                gigs.map((gig, index) => (
+                  <div className="online-coaching-gigs">
+                    {" "}
+                    <GigCard
+                      gigId={gig.id}
+                      gigPhoto={gig.gigPhoto}
+                      gigTitle={gig.Title}
+                      sellerId={gig.id}
+                      rating={gig.starNumber}
+                      totalSales={gig.totalSales}
+                    />{" "}
+                  </div>
+                ))}
             </div>
           </>
         )}

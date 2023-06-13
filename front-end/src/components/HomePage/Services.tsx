@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
+import newRequest from "../../Utils/newRequest";
 const personalTraining: string = new URL(
   `../../Assets/personalTraining.png`,
   import.meta.url

@@ -7,7 +7,7 @@ type GigCardProps = {
   gigId: string;
   gigPhoto: string;
   gigTitle: string;
-  sellerName: string;
+  sellerId: string;
   rating: number;
   totalSales: number;
 };
@@ -16,7 +16,7 @@ const GigCard: React.FC<GigCardProps> = ({
   gigId,
   gigPhoto,
   gigTitle,
-  sellerName,
+  sellerId,
   rating,
   totalSales,
 }) => {
@@ -25,7 +25,7 @@ const GigCard: React.FC<GigCardProps> = ({
     gigId: gigId,
     gigPhoto: gigPhoto,
     gigTitle: gigTitle,
-    sellerName: sellerName,
+    sellerId: sellerId,
     rating: rating,
     totalSales: totalSales,
   });
@@ -38,14 +38,14 @@ const GigCard: React.FC<GigCardProps> = ({
     <div className="gig-card">
       <img className="gig-photo" src={gigPhoto} alt="Gig Photo" />
       <h3 className="gig-title-1">{gigTitle}</h3>
-      <p className="seller-name">{sellerName}</p>
+      <p className="seller-name">{sellerId}</p>
       <div className="rating">
         <span className="rating-stars">{rating} stars</span>
         <span className="total-sales">{totalSales} total sales</span>
       </div>
       <button
         className="hire-now-button"
-        onClick={() => onButtonClick(gigId, sellerName)}
+        onClick={() => onButtonClick(gigId, sellerId)}
       >
         Buy Now
       </button>
