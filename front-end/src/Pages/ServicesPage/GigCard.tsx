@@ -35,8 +35,8 @@ const GigCard: React.FC<GigCardProps> = ({
   };
 
   return (
-    <div className="gig-card">
-      <img className="gig-photo" src={gigPhoto} alt="Gig Photo" />
+    <div className="gig-card-test">
+      <img className="gig-photo-test" src={gigPhoto} alt="Gig Photo" />
       <h3 className="gig-title-1">{gigTitle}</h3>
       <p className="seller-name">{sellerId}</p>
       <div className="rating">

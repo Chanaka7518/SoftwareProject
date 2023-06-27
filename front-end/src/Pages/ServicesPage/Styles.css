@@ -1,6 +1,6 @@
 /* GigCard.css */
 
-.gig-card {
+.gig-card-test{
   width: 100%;
   max-width: 400px;
   padding: 20px;
@@ -10,7 +10,7 @@
   text-align: center;
 }
 
-.gig-photo {
+.gig-photo-test {
   width: 400px;
   height: auto;
   object-fit: cover;

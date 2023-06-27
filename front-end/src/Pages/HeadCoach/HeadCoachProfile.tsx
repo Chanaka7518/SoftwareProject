@@ -177,38 +177,37 @@ const HeadCoachProfile: React.FC = () => {
                     <Col {...DISPLAY_SIZES}>
                       <Form.Item
                         label="First Name"
-                        name="FirstName"
-                        initialValue={fName}
+                      
                       >
                         <Input
                           style={{ borderRadius: "0px" }}
                           onChange={(e) => {
                             setNewFName(e.target.value);
                           }}
-                          value={newfName}
+                          value={fName}
                         />
                       </Form.Item>
                     </Col>
                     <Col {...DISPLAY_SIZES}>
                       <Form.Item
                         label="Last Name"
-                        name="LastName"
-                        initialValue={lName}
+                        
+                        
                       >
                         <Input
                           style={{ borderRadius: "0px" }}
                           onChange={(e) => {
                             setNewLName(e.target.value);
                           }}
-                          value={newlName}
+                          value={lName}
                         />
                       </Form.Item>
                     </Col>
                     <Col {...DISPLAY_SIZES}>
-                      <Form.Item label="Age" initialValue={age} name="Age">
+                      <Form.Item label="Age" >
                         <Input
                           style={{ borderRadius: "0px" }}
-                          value={newAge}
+                          value={age}
                           onChange={(e) => {
                             setNewAge(e.target.value);
                           }}

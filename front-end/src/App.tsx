@@ -18,7 +18,7 @@ import MyTeam from "./components/HeadCoach/MyTeam";
 import ServicesPage from "./Pages/ServicesPage/ServicesPage";
 import ClientGigView from "./Pages/Client Views/ClientGigView";
 
-import Signup from "./components/signup/HeadCoach/SignUp";
+import Signup from "./components/signup/HeadCoach/Signup";
 import UnderReview from "./components/Results/UnderReview";
 import SellerApplication from "./components/signup/HeadCoach/SellerApplication";
 import CreateWorkoutOC from "./components/HeadCoach/CreateWorkoutOC";
@@ -28,6 +28,7 @@ import SellerApplicationView from "./components/Admin/SellerApplicationView";
 import PaymentDetailsModal from "./Pages/Buyservice/PaymentDetailsModal";
 import WorkOutPlan from "./Pages/Client Views/WorkoutPlan";
 import NewOrders from "./Pages/HeadCoach/NewOrders";
+import ClientProfile from "./Pages/Client Views/ClientProfile";
 
 const App: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ const App: React.FC = () => {
           <Route path="/" element={<HomepageBody />} />
           <Route path="/generate" element={<UserDashboard />} />
           <Route path="/signup" element={<ClientSignup />} />
+          <Route path="/signupCoach/:token" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgetpwd" element={<ForgetPwd />} />{" "}
           <Route path="/sellerapplication" element={<SellerApplication />} />{" "}
@@ -52,7 +54,7 @@ const App: React.FC = () => {
           />
           <Route
             path="/clientProfile"
-            element={<div>Hi this is client profile</div>}
+            element={<div><ClientProfile/></div>}
           />
           <Route path="/dashboard" element={<UserDashboard />} />
           <Route

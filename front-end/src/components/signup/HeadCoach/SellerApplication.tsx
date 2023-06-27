@@ -325,12 +325,7 @@ const SellerApplication: React.FC = () => {
             />
           </Form.Item>
 
-          <Form.Item>
-            <label className="seller-labels" htmlFor="qualfications">
-              Qualifications:
-            </label>
-            <Input className="seller-inputs" id="qualfications" />
-          </Form.Item>
+
           <Form.Item label="Athletic achievments:" name="Athletic achievments">
             <div style={{ display: "flex", flexDirection: "column" }}>
               {achievements.map((achievment, index) => (

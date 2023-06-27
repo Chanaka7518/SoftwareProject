@@ -87,7 +87,7 @@ const updateOrder = async (req, res, next) => {
   const { sellerId, workoutLink } = req.body;
   try {
     await Order.findByIdAndUpdate(req.params.orderId, {
-      isDeliveredToClient: true,
+      IsWorkoutDeliveredToClient: true,
       workoutLink: workoutLink,
     });
 

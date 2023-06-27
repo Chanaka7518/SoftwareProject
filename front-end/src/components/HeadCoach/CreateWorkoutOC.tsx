@@ -291,7 +291,7 @@ const CreateWorkoutOC: React.FC = () => {
             Submit
           </button>
           <button type="submit" className="workout-creation-cancel-button">
-            Submit
+           Cancel
           </button>
         </Form>
       </Spin>
